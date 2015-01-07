@@ -4,7 +4,7 @@ define('', '', function(require) {
 	var H = require('text!../../../tpl/anli/index.html');
 
 	var model = new M({
-		action: 'http://myyglah.duapp.com/front/queryBeauticianWorks.action'
+		// action: 'http://myyglah.duapp.com/front/queryBeauticianWorks.action'
 	});
 	var V = B.View.extend({
 		model: model,
@@ -14,18 +14,19 @@ define('', '', function(require) {
 		},
 		initialize: function() {
 			var t = this;
-			t.listenTo(t.model, "sync", function() {
-				t.render();
-			});
+			t.render();
+			// t.listenTo(t.model, "sync", function() {
+			// 	t.render();
+			// });
 		},
 		//待优化
 		render: function() {
 			var t = this,
 				data = t.model.toJSON();
-				data.data.beauticianID=t.model.get("pars").beauticianID;
+				// data.data.beauticianID=t.model.get("pars").beauticianID;
 			var html = _.template(t.template, data);
 			t.$el.show().html(html);
-			Jser.loadimages();
+			// Jser.loadimages();
 		},
 		goback: function() {
 			var t = this;
@@ -52,12 +53,12 @@ define('', '', function(require) {
 		}
 	});
 	return function(pars) {
-		model.set({
-			pars: {
-				beauticianID: pars.beauticianID,
-				worksID: pars.worksID
-			}
-		});
+		// model.set({
+		// 	pars: {
+		// 		beauticianID: pars.beauticianID,
+		// 		worksID: pars.worksID
+		// 	}
+		// });
 		return new V({
 			el: $("#" + pars.model + "_" + pars.action)
 		});
