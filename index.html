@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0,minimal-ui">
+    <title>妈咪口袋</title>
+    <link rel="stylesheet" href="resource/css/code-index.css"/>
+    <script type="text/javascript" src="module/lib/Jser.js"></script>
+    <script type="text/javascript" src="module/lib/sea.js"></script>
+    <script type="text/javascript" src="module/lib/seajs-text.js"></script>
+    <script type="text/javascript">
+     seajs.config({
+            base: './module',
+            alias: {
+                //基础库
+                'underscore': 'lib/underscore',
+                'backbone': 'lib/backbone',
+                '$': 'lib/jquery'
+            }
+    });
+    var ST = {
+        PATH:{
+           ROOT:"/Api",
+           IMAGE:"/resource/images/",
+           UPLOAD:"",
+           AJAXIMG:""
+        }
+    }
+    </script>
+</head>
+<body>
+    <div class="wrap js-wrapper">
+        <div id="js-wrap"></div>
+        <ul class="nav flex-equal vishide" id="js-navs">
+            <li class="on">
+                <a href="#index/index">我要下单</a>
+            </li>
+            <li>
+                <a href="#geren/index">个人中心</a>
+            </li>
+            <li>
+                <a href="#kefu/index">客服电话</a>
+            </li>
+        </ul>
+        <div class="pop loading hide" id="js-loading">
+            <div class="load-png">
+                <img src="resource/images/shuxin.gif" style="vertical-align:middle">&nbsp;&nbsp;奋力加载中...</div>
+        </div>
+    </div>
+    <div class="tpl hide">
+        <div id="js-pop-tpl">
+            <div class="pop">
+                <div class="pop-inner">
+                    <div class="pop-msg js-pop-txt">这个是测试的</div>
+                    <div class="pop-btn-box flex-equal">
+                        <a href="javascript:;" class="js-close" data-uid="123456">好</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script  type="text/javascript">   
+    seajs.use('app.js', function(app) {
+        app.run();
+    });
+    function hideLoad() {
+        setTimeout(function() {
+            $("#js-loading").hide();
+        }, 300);
+    };
+
+    function scrollTop() {
+        setTimeout(function() {
+            window.scrollTo(0, 0);
+        }, 100)
+    };
+    function GetDateStr(AddDayCount) {
+        var dd = new Date();
+        dd.setDate(dd.getDate() + AddDayCount); //获取AddDayCount天后的日期
+        var y = dd.getFullYear();
+        var m = dd.getMonth() + 1; //获取当前月份的日期
+        var d = dd.getDate();
+        return y + "-" + m + "-" + d;
+    }
+    </script>
+</body>
+</html>

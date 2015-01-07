@@ -1,0 +1,15 @@
+<%_.each(data.list,function(item){%>
+<li>
+	<div class="list-left">
+	<a href="#role/index/beauticianID:<%=item.beauticianID%>">
+		<img src="resource/images/loadimg.png" data-src="<%=item.beauticianImg%>"/></a>
+	<div class="heart"><div class="hasheart" style="width:<%=(item.beauticianStars*20)%>px;"></div></div>
+	</div>
+	<div class="list-right">
+	<p class="name"><%=item.beauticianName%></p>
+	<p><%=item.totalWorks%>单</p>
+	<p class="info"><%=item.beauticianFeature%></p>
+	<a href="#xiadan/index/beauticianID:<%=item.beauticianID%>" class="list-btn" >约TA</a>
+	</div>
+</li>
+<%})%>
