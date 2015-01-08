@@ -23,22 +23,23 @@ define('', '', function(require) {
 		initialize: function() {
 			var t = this;
 			indexSelf = this;
-			t.listenToOnce(t.model, "change:data", function() {
-				t.render();
-				t.listenTo(t.model, "sync", function() {
-					t.syncRender();
-				});
-			});
+			t.render();
+			// t.listenToOnce(t.model, "change:data", function() {
+			// 	t.render();
+			// 	t.listenTo(t.model, "sync", function() {
+			// 		t.syncRender();
+			// 	});
+			// });
 		},
 		//待优化
 		render: function() {
 			var t = this,
-				data = t.model.toJSON();
+				data ={};// t.model.toJSON();
 			var html = _.template(t.template, data);
-			t.totalPage = data.totalPage;
+			// t.totalPage = data.totalPage;
 			t.$el.show().html(html);
 			t.bindEvent();
-			t.syncRender();
+			// t.syncRender();
 		},
 		syncRender: function() {
 			var t = this,
@@ -105,9 +106,9 @@ define('', '', function(require) {
 		}
 	});
 	return function(pars) {
-		model.set({
-			action: 'http://myyglah.duapp.com/front/index.action?pageNo=0'
-		});
+		// model.set({
+		// 	action: 'http://myyglah.duapp.com/front/index.action?pageNo=0'
+		// });
 		return new V({
 			el: $("#" + pars.model + "_" + pars.action)
 		});

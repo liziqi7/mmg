@@ -255,31 +255,57 @@ textarea{
   z-index:9;
   width: 100%;  
   height:50px; 
-  border-top: 1px solid #DCDDDD;
+  /*border-top: 1px solid #000;*/
   background:#fff; 
 }
 .nav li{  
   text-align: center;  
-  border-left: 1px solid #DCDDDD;
-  font-size: 1em;
-}
-.nav li:nth-child(1){  
-  border-left:none;
-
+  height: 50px;
 }
 .nav li a{
-  color:#595757;
-  line-height: 50px;
-  display: inline-block;
+  display: block;
   width: 100%;
   height: 100%;
-  font-size: 1em;
+  position: relative;
 }
-.nav li.on a{
- color: #f45254;
+.nav-icon{
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin:8px auto 0;
+  background: url(../images/icon1.png) center 0 no-repeat;
+  background-size: 100%;
 }
-
-
+.icon-index{
+  background-position:0  0px;
+}
+.icon-qindan{
+  background-position:0  -80px;
+}
+.icon-wode{
+  background-position:0  -40px;
+}
+.nav-txt{
+  font-size: 0.75em;
+  width: 100%;
+  text-align: center;
+  height: 24px;
+  line-height: 24px;
+  color: #6c6767;
+  display: block;
+}
+.nav li.on .icon-index{
+  background-position:0  -20px;
+}
+.nav li.on .icon-qindan{
+  background-position:0  -100px;
+}
+.nav li.on .icon-wode{
+  background-position:0  -60px;
+}
+.nav li.on .nav-txt{
+ color: #f1968b;
+}
 .header{
   width:100%;
   height:44px;
@@ -299,7 +325,9 @@ textarea{
 }
 .header .hd-btn{
   position: absolute;
-  width: 70px;
+  width: 45px;
+  height: 44px;
+  padding: 12px 0 0 6px;
   right: 0;
   top:0;
   color:#ffffff; 
@@ -607,6 +635,74 @@ textarea{
   margin: 10px auto 0;
   display: block;
 }
+.index-wrapper{
+  padding-bottom:50px; 
+}
+.index-header{
+  height: 44px;
+  overflow: hidden;
+}
+.hd-logo{
+  width: 50px;
+  height: 20px;
+  display: block;
+  background: url(../images/logo2.png) 0 0 no-repeat;
+  background-size: 100%;
+  margin: 14px auto 0;
+}
+.search-icon{
+  width: 40px;
+  height: 40px;
+  background-position:0 -156px;
+  display: block;
+}
+.index-list li{
+  position: relative;
+}
+.mark-icon{
+  width: 34px;
+  height: 40px;
+  background-position:0 -197px;
+   position: absolute;
+  right: 15px;
+  top: 17px;
+  display: block;
+}
+.mark-icon-on{
+  width: 34px;
+  height: 40px;
+  background-position:0 -237px;
+  position: absolute;
+  right: 15px;
+  top: 17px;
+}
+.count-btn{
+  min-width: 62px;
+  height: 22px;
+  line-height: 22px;
+  padding: 0 7px;
+  color: #fff;
+  background-color: #7ea7fd; 
+  position: absolute;
+  z-index: 3;
+  left: 16px;
+  top: 114px;
+  border-radius: 10px;
+  font-size: 0.875px;
+}
+.index-list-txt{
+  height: 26px;
+  font-size: 0.875em;
+  line-height: 26px;
+  text-indent: 0.875em;
+  color: #6b6b6b;
+  background-color: #e6e6e6;
+}
+.icon-index{
+
+}
+
+
 
 @media screen and (min-width: 480px){
   
