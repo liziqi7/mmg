@@ -1,18 +1,14 @@
 define('', '', function(require) {
 	var B = require('backbone');
-	var M = require('base/model');
-	
-	var H = require('text!../../../tpl/index/index.html');
-	var Slider = require("view/index/view/slider");
-
-	var list_tpl = require('text!../../../tpl/index/view/list.html');
-	
+	var M = require('base/model');	
+	var H = require('text!../../../tpl/list/index.html');
+	var list_tpl = require('text!../../../tpl/list/view/list.html');	
 	var model = new M({
 		pars: {
 			"pageNo": "1"
 		}
 	});
-	var indexSelf;
+	var listSelf;
 	var V = B.View.extend({
 		model: model,
 		template: H,
@@ -22,11 +18,12 @@ define('', '', function(require) {
 		pageNo: 1,
 		totalPage: 1,
 		events: {
-
+			"click .js-back": "goback",
+			"click .js-share": "doShare",
 		},
 		initialize: function() {
 			var t = this;
-			indexSelf = this;
+			listSelf = this;
 			t.listenToOnce(t.model, "change:data", function() {
 				t.render();		
 				t.listenTo(t.model, "sync", function() {
@@ -41,27 +38,34 @@ define('', '', function(require) {
 			var html = _.template(t.template, data);
 			t.totalPage =Number(data.totalPage);
 			t.$el.show().html(html);
-			// 轮播图
-			new Slider({
-				el: t.$el.find(".js-slider-box")
-			});
-			t.bindEvent();	
+			t.bindEvent();		
+		},
+		goback: function() {
+			var t = this;
+			if (window.history && window.history.length > 2) {
+				window.history.back();
+			} else {
+				window.location.href = "#";
+			}
+		},
+		doShare:function(){
+			Jser.share();
 		},
 		syncRender: function() {
 			var t = this,
 				data = t.model.toJSON();
 			var _html = _.template(list_tpl, data);
-			t.$el.find(".js-index-list").append(_html);
-			Jser.loadimages(t.$el.find(".js-index-list"));
+			t.$el.find(".js-list-area").append(_html);
+			Jser.loadimages(t.$el.find(".js-list-area"));
 		},
 		bindEvent: function() {
 			var t = this;
 			t.killScroll(true);
-			$(window).on("scroll.index", t.doScroll);		
+			$(window).on("scroll.list", t.doScroll);		
 		},		
 		doScroll: function() {
-			var t = indexSelf;
-			if (!t.iTimer && t.isEnableLoadData && t.isLoad && (window.location.hash == "" || window.location.hash.indexOf("#index/index") != -1)) {
+			var t = listSelf;
+			if (!t.iTimer && t.isEnableLoadData && t.isLoad && (window.location.hash == "" || window.location.hash.indexOf("#list/index") != -1)) {
 				t.iTimer = setTimeout(function() {
 					if ($(document).height() - $("body").scrollTop() - $(window).height() < 100) {
 						t.loadData();
@@ -78,6 +82,7 @@ define('', '', function(require) {
 				var pars = {
 					"pageNo": t.pageNo
 				}
+				t.$el.find(".js-list-loading").show();
 				t.changePars(pars);
 			} else {
 				t.overScroll();
@@ -92,8 +97,8 @@ define('', '', function(require) {
 		},
 		killScroll: function(isKill) {
 			var t = this;
-			if ((!t.isEnableLoadData && (window.location.hash == "" || window.location.hash.indexOf("#index/index") != -1)) || !!isKill) {
-				$(window).off('scroll.index', t.doScroll);
+			if ((!t.isEnableLoadData && (window.location.hash == "" || window.location.hash.indexOf("#list/index") != -1)) || !!isKill) {
+				$(window).off('scroll.list', t.doScroll);
 				t.clearTime();
 			}
 		},
@@ -113,7 +118,7 @@ define('', '', function(require) {
 	});
 	return function(pars) {
 		model.set({
-			action: 'resource/data/index.data.json'
+			action: 'resource/data/list.json'
 		});
 		return new V({
 			el: $("#" + pars.model + "_" + pars.action)

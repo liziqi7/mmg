@@ -88,7 +88,7 @@ window.Jser = {
     alert: function(txt, callback) {
         var $pop = $("#js-pop-tpl").find(".pop").clone();
         var uid = Jser.getGUID();
-        $pop.find(".js-pop-txt").text(txt);
+        $pop.find(".js-pop-txt").html(txt);
         $pop.find(".js-close").attr("data-uid", uid);
         $pop.attr("id", "js-pop" + uid);
         $(".js-wrapper").append($pop);
@@ -98,5 +98,41 @@ window.Jser = {
             $(document).trigger("closepop" + uid);
             callback && callback();
         });
+        return uid;
+    },
+    confirm: function(txt, ok, cancel, callback) {
+        var $pop = $("#js-pop-tpl").find(".pop").clone();
+        var uid = Jser.getGUID();
+        $pop.find(".js-pop-txt").html(txt);
+        $pop.find(".js-close").attr("data-uid", uid).html("取消");
+        var $clone = $pop.find(".js-close").clone();
+        $clone.addClass("js-ok").html("好");
+        $pop.find(".js-close").parent().append($clone);
+        $pop.attr("id", "js-pop" + uid);
+        $(".js-wrapper").append($pop);
+        $pop.find(".js-close").one('click', function() {
+            var uid = $(this).data("uid");
+            $("#js-pop" + uid).remove();
+            $(document).trigger("closepop" + uid);
+            cancel && cancel();
+        });
+        $pop.find(".js-ok").one('click', function() {
+            $(document).trigger("okpop" + uid);
+            ok && ok();
+        });
+        callback && callback($pop);
+        return uid;
+    },
+    share: function(params) {
+        if ($.isEmptyObject(params)) {
+            $.extend(WeiXinShare, params);
+        }
+        this.showShare();
+    },
+    showShare: function() {
+        $(".js-weixin_share").show().on("mousedown.share", this.hideShare);
+    },
+    hideShare: function() {
+        $(".js-weixin_share").hide().off("mousedown.share");
     }
 }

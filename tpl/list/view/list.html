@@ -1,0 +1,9 @@
+<%_.each(data.list,function(item){%>
+	<li>
+		<a href="<%=item.link%>">
+			<img src="resource/images/loadimg.png" data-src="<%=item.img%>">			
+			<p class="word"><%=item.word%></p>
+			<p>￥<%=item.price%></p>
+		</a>			
+	</li>		
+<%})%>

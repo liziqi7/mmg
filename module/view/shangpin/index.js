@@ -2,10 +2,12 @@ define('', '', function(require) {
 	var B = require('backbone');
 	var M = require('base/model');
 	
-	var H = require('text!../../../tpl/index/index.html');
-	var Slider = require("view/index/view/slider");
+	var H = require('text!../../../tpl/shangpin/index.html');
 
-	var list_tpl = require('text!../../../tpl/index/view/list.html');
+	var Slider = require("view/shangpin/view/slider");
+
+
+	var list_tpl = require('text!../../../tpl/shangpin/view/list.html');
 	
 	var model = new M({
 		pars: {
@@ -52,7 +54,7 @@ define('', '', function(require) {
 				data = t.model.toJSON();
 			var _html = _.template(list_tpl, data);
 			t.$el.find(".js-index-list").append(_html);
-			Jser.loadimages(t.$el.find(".js-index-list"));
+			Jser.loadimages();
 		},
 		bindEvent: function() {
 			var t = this;
@@ -113,7 +115,7 @@ define('', '', function(require) {
 	});
 	return function(pars) {
 		model.set({
-			action: 'resource/data/index.data.json'
+			action: 'resource/data/shangpin.json'
 		});
 		return new V({
 			el: $("#" + pars.model + "_" + pars.action)

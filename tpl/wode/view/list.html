@@ -1,0 +1,22 @@
+<%_.each(data.list,function(item){%>
+<li class="clean <%=Number(item.checked)?"on":""%>" data-checked="<%=item.checked%>">
+	<div class="qd-left">
+		<a href="<%=item.link%>">
+			<table>
+				<tr>
+					<td style="vertical-align:top;">
+						<img src="resource/images/loadimg.png"  data-src="<%=item.img%>"/>							
+					</td>
+					<td>
+						<div class="qd-info">
+							<p class="qd-title"><%=item.title%></p>
+							<p class="qd-lable"><%=item.lable%></p>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</a>
+	</div>
+	<div class="qd-right"><div class="qd-icon"><i class="icon"></i></div></div>
+</li>	
+<%})%>

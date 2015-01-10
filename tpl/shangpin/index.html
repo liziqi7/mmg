@@ -1,0 +1,85 @@
+<div class="header">
+	<a href="javascript:;" class="btn-back js-back"> <i class="icon"></i>
+	</a>
+	商品名称
+	<a href="javascript:;" class="btn-share js-share"> <i class="icon"></i>
+	</a>
+</div>
+<div class="shangpin-wrapper">
+	<div class="js-slider-box"></div>
+	<table class="shangpin-title">
+		<tr>
+			<td>
+				<p class="p1">沃尔沃(VOLVO)儿童安全座椅</p>
+				<p class="p2">￥3900·英国·9个月-六周岁</p>
+			</td>
+			<td class="shangpin-right">
+				<a href="javascript:;" class="buy"><div class="icon-buy"><i class="icon"></i></div></a>
+			</td>
+		</tr>
+	</table>
+	<div class="shangpin-recom js-recom-area">
+		<p class="title">这个商品被收录在</p>
+		<div class="recom-box">
+			<ul class="clean" style="width:690px;">
+				<%_.each(data.recom.list,function(item){%>
+				<li>
+					<a href="<%=item.link%>">
+						<img src="resource/images/loadimg.png" data-src="<%=item.img%>" />
+						<p class="txt"><%=item.txt%></p>
+					</a>
+				</li>
+				<%})%>
+			</ul>
+		</div>
+	</div>	
+	<ul class="shangpin-tab flex-equal">
+		<li><div>商品介绍</div></li>
+		<li class="on"><div>商品评论</div></li>
+	</ul>
+	<ul class="shangpin-tab-highlight flex-equal">
+		<li><div></div></li>
+		<li class="on"><div></div></li>
+	</ul>
+	<div class="shangpin-content hide">
+		<img src="resource/images/shangpin1.png">
+	</div>
+	<div class="shangpin-content shangpin-comment">
+		<p class="title">13条评论</p>
+		<ul>
+			<li>
+				<div class="sleft"><img src="resource/images/c1.png"></div>
+				<div class="sright">
+					<p class="p1">OdieWu<span>三天前</span></p>
+					<p class="p2">宝宝满一岁了，大了，该换大宝宝的 安全座椅宝宝满一岁了，大了，该换大宝宝的 安全座椅宝宝满一岁了，大了，该换大宝宝的 安全座椅咯~</p>
+					<p class="p3">推荐理由</p>
+					<div class="stag">
+						<div class="btn btn-tag">安全</div>
+						<div class="btn btn-tag">男孩用</div>
+						<div class="btn btn-tag">安全</div>
+						<div class="btn btn-tag">安全</div>	
+						<div class="btn btn-tag">安全</div>							
+					</div>
+				</div>
+			</li>	
+			<li>
+				<div class="sleft"><img src="resource/images/c1.png"></div>
+				<div class="sright">
+					<p class="p1">OdieWu<span>三天前</span></p>
+					<p class="p2">宝宝满一岁了，大了</p>
+					<p class="p3">推荐理由</p>
+					<div class="stag">
+						<div class="btn btn-tag">安全</div>
+						<div class="btn btn-tag">男孩用</div>
+
+					</div>
+				</div>
+			</li>			
+		</ul>
+	</div>
+	<ul class="index-list js-index-list hide"></ul>
+	<div class="list-loading js-list-loading">
+		正在奋力加载中
+		<i class="loading-icon"></i>
+	</div>
+</div>

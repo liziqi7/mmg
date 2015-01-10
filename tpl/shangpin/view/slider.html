@@ -1,0 +1,24 @@
+<div class="slider-box slider-box2">
+    <ul class="slider-list">
+        <%_.each(data.list,function(item){%>
+            <li>
+                <img src="resource/images/loadimg.png" data-src="<%=item.img%>" alt=""/>               
+            </li>
+        <%})%>
+    </ul>
+    <div class="slider-point">
+        <ul id="js-index-sliderIdx">
+            <%_.each(data.list,function(item,i){%>
+               <li class="<%=(i==0?"on":"")%>"></li>
+            <%})%>                         
+        </ul>
+    </div>
+    <div class="slider-suggest">
+        <p class="p1">建议购买时间</p>
+        <p class="p2">9个月-13个月</p>
+    </div>
+    <div class="slider-suggest2">
+        <p class="p1">适合</p>
+        <p class="p2">9个月+</p>
+    </div>
+</div>

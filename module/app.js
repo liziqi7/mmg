@@ -5,7 +5,7 @@ define(function(require, exports) {
         el: $("#js-navs"),
         map: {
             "index": 0,
-            "geren": 1,
+            "qingdan": 1,
             "kefu": 2
         },
         initialize: function() {
@@ -27,12 +27,11 @@ define(function(require, exports) {
             } else {
                 this.$el.hide();
             }
-            if (m == "dingdan") {
+            if (m == "list") {
                 $('body').addClass("bg1");
             } else {
                 $('body').removeClass("bg1");
             }
-
         },
 
         bindEvent: function() {
