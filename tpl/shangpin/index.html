@@ -14,7 +14,7 @@
 				<p class="p2">￥3900·英国·9个月-六周岁</p>
 			</td>
 			<td class="shangpin-right">
-				<a href="javascript:;" class="buy"><div class="icon-buy"><i class="icon"></i></div></a>
+				<a href="javascript:;" class="buy"><div class="icon-buy-box"><i class="icon icon-buy"></i></div></a>
 			</td>
 		</tr>
 	</table>
@@ -33,23 +33,31 @@
 			</ul>
 		</div>
 	</div>	
-	<ul class="shangpin-tab flex-equal">
+	<ul class="shangpin-tab flex-equal js-tab">
 		<li><div>商品介绍</div></li>
 		<li class="on"><div>商品评论</div></li>
 	</ul>
-	<ul class="shangpin-tab-highlight flex-equal">
+	<ul class="shangpin-tab-highlight flex-equal js-tab-highlight">
 		<li><div></div></li>
 		<li class="on"><div></div></li>
 	</ul>
-	<div class="shangpin-content hide">
+	<div class="shangpin-content js-tab-content hide">
 		<img src="resource/images/shangpin1.png">
 	</div>
-	<div class="shangpin-content shangpin-comment">
-		<p class="title">13条评论</p>
-		<ul>
+	<div class="shangpin-content js-tab-content shangpin-comment">
+		<div class="clean">
+			<p class="title">13条评论</p>
+			<ul class="right comment-btn-box clean js-comment-btn">
+				<li><a href="#comment/index"><i class="icon icon-comment"></i></a></li>
+				<li><a href="javascript:;"><i class="icon icon-heart"></i></a></li>
+				<li><a href="javascript:;"><i class="icon icon-all-comment"></i></a></li>
+				<li><a href="javascript:;"><i class="icon icon-buy"></i></a></li>
+			</ul>
+		</div>		
+		<ul class="comment-list">
 			<li>
 				<div class="sleft"><img src="resource/images/c1.png"></div>
-				<div class="sright">
+				<div class="sright" style=" border:none;">
 					<p class="p1">OdieWu<span>三天前</span></p>
 					<p class="p2">宝宝满一岁了，大了，该换大宝宝的 安全座椅宝宝满一岁了，大了，该换大宝宝的 安全座椅宝宝满一岁了，大了，该换大宝宝的 安全座椅咯~</p>
 					<p class="p3">推荐理由</p>
@@ -62,24 +70,9 @@
 					</div>
 				</div>
 			</li>	
-			<li>
-				<div class="sleft"><img src="resource/images/c1.png"></div>
-				<div class="sright">
-					<p class="p1">OdieWu<span>三天前</span></p>
-					<p class="p2">宝宝满一岁了，大了</p>
-					<p class="p3">推荐理由</p>
-					<div class="stag">
-						<div class="btn btn-tag">安全</div>
-						<div class="btn btn-tag">男孩用</div>
-
-					</div>
-				</div>
-			</li>			
 		</ul>
-	</div>
-	<ul class="index-list js-index-list hide"></ul>
-	<div class="list-loading js-list-loading">
-		正在奋力加载中
-		<i class="loading-icon"></i>
+		<a class="all-comment" href="#comment/index">
+			查看全部13条评论 &gt;
+		</a>
 	</div>
 </div>

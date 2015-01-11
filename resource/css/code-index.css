@@ -1,11 +1,3 @@
-/**
- * @class 小甜心
- * @singleton liziqi7@gmail.com
- * @createTime 2014-12-25
- * @updateTime
- * @note
- * @version 1.0
- */
 * {
   /*启用盒模型*/
   -webkit-box-sizing: border-box;
@@ -76,6 +68,7 @@ ul,ol{
 input[type="text"],
 input[type="number"],
 input[type="tel"],
+input[type="password"],
 textarea{
   background:transparent;
   border: 0;
@@ -339,6 +332,17 @@ textarea{
   width: 100%;
   height:50px;
 }
+.hd-right{
+  line-height: 44px;
+  width: 43px;
+  height: 44px;
+  position: absolute;
+  top:0;
+  right: 0;
+  color: #fff;
+  display: block;
+  font-size: 0.875em;
+}
 .header .hd-btn{
   position: absolute;
   width: 45px;
@@ -371,6 +375,15 @@ textarea{
   width: 30px;
   display: block;
   padding: 12px 9px;
+}
+.left-btn{
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  height: 44px;
+  width: 30px;
+  display: block;
+  padding: 14px 8px;
 }
 .header .btn-share i{
   width: 38px;
@@ -552,6 +565,7 @@ textarea{
  color:#757584;
  font-size: 0.875em;
  margin-top: 38px;
+ display: inline-block;
 }
 .xinxi-wrapper{
   padding-bottom:50px; 
@@ -693,9 +707,8 @@ textarea{
 }
 .slider-box{
   height: 120px;
-  width: 100%;
+  width: 320px;
   overflow: hidden;
-  max-width: 480px;
   margin: 0 auto;
   position: relative;
 }
@@ -842,8 +855,78 @@ textarea{
 .icon-index{
 
 }
+.dropdown-icon{
+  width: 40px;
+  height: 37px;
+  display: block;
+  background-position:0 -485px;
+}
+.hd-dropdown{
+  position: absolute;
+  width: 30px;
+  height: 44px;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+/*.hd-dropdown{
+  position: fixed;
+  left:0px;
+  top:44px;
+  height: 140px;
+  width: 138px;  
+  z-index: 9;
+}*/
+.arrow-up{
+  width:0;   
+  height:0; 
+  position: relative;
+  left:10px;
+  border-left:7px solid transparent;
+  border-right:7px solid transparent;
+  border-bottom:7px solid #f79989;
+}
+.dropdown-list{
+  background-color:#f79989;
+  height: 130px;
+  width: 100%;
+  color: #fff;
+  padding: 19px 14px 0;
+}
+.dropdown-list li{
+  height: 40px;
+  padding:4px;
+}
+.dropdown-list li:nth-child(1){
+  height: 30px;
+  margin-bottom: 10px;
+  border-bottom:1px solid #E28A7C;
+}
+.icon-shangpin{
+  width: 31px;
+  height: 30px;
+  display: block;
+  background-position: 0 -522px;
+}
+.icon-done{
+  width: 31px;
+  height: 25px;
+  display: block;
+  background-position: 0 -552px;
+}
+.icon-undone{
+  width: 33px;
+  height: 34px;
+  display: block;
+  background-position: 0 -577px;
+}
+.dropdown-icon-box{
+  float: left;
+  margin-top:2px; 
+}
 .qingdan-top{
-  width: 320px;
+  width:320px;
+  margin:0 auto;
   height: 62px;
   padding: 7px 0;
   position: relative;
@@ -885,8 +968,8 @@ textarea{
 }
 .qingdan-slide{
   height: 120px;
-  width: 100%;
-  max-width: 480px;
+  width: 320px;
+  margin: 0 auto;
   position: relative;  
 }
 .qingdan-slide img{
@@ -902,11 +985,34 @@ textarea{
   left: 0px; 
 }
 .qs-txt{
-  text-align: center;
+  text-indent: 0.5em;
+  font-size: 0.875em;
   line-height: 30px;
   color: #6b6b6b;
   background: rgba(230,230,230,0.5);
   width: 100%;
+}
+.qs-btn{
+  min-width: 62px;
+  height: 22px;
+  line-height: 22px;
+  padding: 0 7px;
+  color: #fff;
+  position: absolute;
+  right: 2px;
+  top:4px;
+  background-color: #7ea7fd;
+  display: block;
+  border-radius: 10px;
+  font-size: 0.875em;
+}
+.qs-btn-select{
+  position: absolute;
+  right: 2px;
+  top:4px;
+  opacity: 0;
+  width: 100px;
+  height: 22px;
 }
 .qs-btn-box {
   background: rgba(174,174,174,0.5);
@@ -961,13 +1067,13 @@ textarea{
   width: 19px;
 }
 .qd-icon i{
-  background-position:0 -277px;
+  background-position:0 -611px;
   width: 38px;
   height: 34px;
   display: block;
 }
 .qingdan-list li.on .qd-icon i{
-  background-position:0 -310px; 
+  background-position:0 -645px; 
 }
 .qd-left img{
   width: 48px;
@@ -997,8 +1103,7 @@ textarea{
 }
 .list-top{
   height: 120px;
-  width: 100%;
-  max-width: 480px;
+  width: 320px;
   margin:0 auto;
   overflow: hidden;
   position: relative;
@@ -1045,13 +1150,13 @@ textarea{
   font-size: 0.875em;
   width: 90%;
   overflow: hidden;
-  height: 24px;
-  line-height: 24px;
-  text-indent: 0.5em;
+  max-height: 44px;
+  min-height: 33px;
+  line-height: 22px;
+  margin-left: 10px;
   color:#a8a8a8;   
 }
 .list-area li p.word{
-  margin-top: 8px;
   color: #636363;
 }
 .shangpin-title{
@@ -1084,12 +1189,12 @@ textarea{
   overflow: hidden;
   display: block;
 }
-.icon-buy{
+.icon-buy-box{
   width: 20px;
   height: 18px;
   margin: 6px auto 0;
 }
-.icon-buy i{
+.icon-buy{
   width: 40px;
   height: 35px;
   display: block;
@@ -1177,65 +1282,106 @@ textarea{
 .shangpin-tab-highlight li.on div{ 
   background-color: #EB938B;  
 }
-.shangoin-comment{
+.shangpin-comment{
 
 }
-.shangoin-comment .title{
-  line-height: 24px;
-  height: 24px;
+.shangpin-comment .title{
+  line-height: 25px;
+  height: 25px;
   overflow: hidden;
   font-size: 0.875em;
   color: #302e2e;
   text-indent: 0.8em;
+  display: inline-block;
 }
-.shangpin-comment li{
+.shangpin-comment .comment-btn-box{
+  width: 200px;  
+  height: 25px;
+}
+.shangpin-comment .comment-btn-box li{
+  width:50px;
+  height: 25px;
+  border-left:1px solid #F7D2CE;
+  background-color: #f79989;
+  float: left;
+}
+.shangpin-comment .comment-btn-box li:nth-child(1){
+  border:none;
+}
+.shangpin-comment .comment-btn-box a{
+  display: block;
+  width:20px;
+  height:20px;
+  margin: 4px auto 0;
+}
+.icon-comment{
+  width:40px;
+  height:36px;
+  display: block;
+  background-position: 0 -350px;
+}
+.icon-heart{
+  width:40px;
+  height:32px;
+  display: block;
+  background-position: 0 -386px;
+}
+.icon-all-comment{
+  width:40px;
+  height:35px;
+  display: block;
+  background-position: 0 -450px;
+}
+
+.comment-list li{
   position: relative;
   height: 180px;
 }
-.shangpin-comment .sleft{
+.comment-list .sleft{
   width: 70px;  
   padding-top: 20px;
 }
-.shangpin-comment .sleft img{
+.comment-list .sleft img{
   width: 46px;
   height: 46px;
   border-radius:50%;
   margin-left: 16px;
 }
-.shangpin-comment .sright{
+.comment-list .sright{
   position: absolute;
   left:70px;
-  top:20px;
+  top:0px;
   right: 0;
   height: 160px;
-  border-bottom:1px solid #E6E6E6;
+  padding-top: 20px;
+  border-top:1px solid #E6E6E6;
 }
-.shangpin-comment .p1{
+.comment-list .p1{
   color: #302e2e;
 }
-.shangpin-comment .p1 span{
+.comment-list .p1 span{
   float: right;
   color: #797575;
   font-size: 0.875em;
   margin-right: 14px;
 }
-.shangpin-comment .p2{
+.comment-list .p2{
   margin-top:3px;
   line-height: 18px;
-  max-height: 54px;
-  min-height: 32px;
+  height: 54px;
+  /*min-height: 32px;*/
   overflow: hidden;
   width: 90%;
   color:#797575;
   font-size: 0.875em;
 }
-.shangpin-comment .p3{
+.comment-list .p3{
   color:#302e2e;
   font-size: 0.875em;
   height: 20px;
   margin-top: 5px;
 }
-.shangpin-comment .stag{
+.comment-list .stag{
   height: 64px;
   overflow: hidden;
 }
@@ -1248,6 +1394,124 @@ textarea{
   font-size: 0.875em;
   margin:0px 3px 4px 0;
 }
+.shangpin-comment .all-comment{
+  display: inline-block;
+  width: 100%;
+  height: 50px;
+  padding-top:20px;
+  font-size: 0.875em;
+  text-indent: 0.8em;
+  color: #797575;
+  border-top:1px #E6E6E6 solid;
+  border-bottom:1px #E6E6E6 solid;
+}
+.comment-wrapper{
+  padding-bottom: 42px;
+}
+.comment-import{
+  width: 100%;
+  position: fixed;
+  z-index: 5;
+  bottom: 0;
+  height: 42px;
+  left: 0;
+  background-color: #EDEDED;
+  line-height: 42px;
+  color: #8F8F8F;
+}
+.comment-import2{
+  width: 100%;
+  position: fixed;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  right:0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.7); 
+}
+.comment-import-box .title{
+  height: 80px;
+}
+.comment-import-box{
+  height: 200px;
+  width: 100%;
+  background: #EDEDED;
+}
+.comment-close{
+  height: 40px;
+  width: 40px;
+  float: right;  
+  background: url(../images/close.png) center center no-repeat;
+}
+.comment-ipt-box{
+  margin: 0 auto;
+  width: 320px;
+}
+.comment-ipt{
+  margin-top:5px; 
+  height:30px;
+  padding:5px 10px;
+  width:  235px;
+  border:1px solid #969696;
+  overflow: hidden;
+  font-size: 14px;
+}
+.comment-ipt input{
+  height: 20px;
+  width: 215px;
+  display: block;  
+}
+.btn-comment{
+  width: 56px;
+  height: 42px;
+  line-height: 42px;
+  text-align: center;
+}
+.wode-area{
+
+}
+.wode-area .portrait{
+  margin: 27px auto 0;
+  border:1px solid #F29B76;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  display: block;
+}
+.wode-list{
+  margin-top: 26px;
+  border-top:1px #959595 solid;
+}
+.wode-list li{
+  height: 51px;
+  width: 100%;
+  line-height: 50px;
+  color: #9a9a9a;
+  border-bottom:1px #959595 solid;
+  font-size: 0.875em;
+  text-indent: 40px;
+}
+.wode-list li a{
+  color: #9a9a9a;
+}
+.wode-list li .right{
+  margin-right: 28px;
+}
+.search-ipt{
+  width: 200px;
+  height: 30px;
+  padding: 5px 10px;
+  margin:7px auto;
+  background-color: #fff;
+}
+.search-ipt input{
+  height: 20px;
+  width: 180px;
+  font-size: 0.875em;
+  display: block;
+}
+
+
 @media screen and (min-width: 480px){
   
 }

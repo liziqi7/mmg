@@ -1,8 +1,23 @@
 <div class="header">
-	必备清单
-	<a href="#search/index" class="hd-btn"> <i class="search-icon icon"></i>
+	<a href="javascript:;" class="left-btn js-dropdown"><i class="dropdown-icon icon"></i>
 	</a>
+	必备清单
+	<a href="#search/index" class="hd-btn"><i class="search-icon icon"></i>
+	</a>
+	<select class="hd-dropdown">
+		<option>全部商品</option>
+		<option>已完成</option>
+		<option>未完成</option>
+	</select>	
 </div>
+<!-- <div class="hd-dropdown hide">
+	<div class="arrow-up"></div>
+	<ul class="dropdown-list">
+		<li><div class="dropdown-icon-box"><i class="icon icon-shangpin"></i></div>全部商品</li>
+		<li><div class="dropdown-icon-box"><i class="icon icon-done"></i></div>已完成</li>
+		<li><div class="dropdown-icon-box"><i class="icon icon-undone"></i></div>未完成</li>
+	</ul>
+</div> -->
 <div class="first-wrapper qingdan-index">
 	<div class="qingdan-top clean">
 		<div class="qd-top  qd-top-left qd-top-on"  data-type="<%=data.type1[0]%>"><%=data.type1[1]%></div>
@@ -12,23 +27,18 @@
 		<div class="qd-top qd-top-right" data-type="<%=data.type2[0]%>"><%=data.type2[1]%></div>
 	</div>
 	<div class="qingdan-slide">
-		<%if(!data.slide.txt){%>
-			<a href="javascript:;">
-				<img src="resource/images/loadimg.png" data-src="<%=data.slide.img%>" />			
-				<div class="qs-explain">
-					<p class="qs-txt"><%=data.slide.txt%></p>								
-				</div>
-			</a>
-		<%}else{%>
+		<a href="javascript:;">
 			<img src="resource/images/loadimg.png" data-src="<%=data.slide.img%>" />			
 			<div class="qs-explain">
-				<ul class="flex-equal qs-btn-box">
-					<li><a href="">10件未完成</a></li>
-					<li class="on"> <a href="">共120件商品</a></li>
-					<li><a href="">10件已完成</a></li>					
-				</ul>				
+				<div class="qs-txt"><%=data.slide.txt%></div>	
+				<div class="qs-btn btn">全部20件商品</div>
+				<select class="qs-btn-select">
+					<option>全部</option>
+					<option>已完成</option>
+					<option>未完成</option>
+				</select>						
 			</div>
-		<%}%>		
+		</a>
 	</div>
 	<ul class="qingdan-list js-qingdan-list">				
 	</ul>

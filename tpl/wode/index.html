@@ -1,38 +1,14 @@
 <div class="header">
 	我的
-	<a href="#search/index" class="hd-btn"> <i class="search-icon icon"></i>
-	</a>
+	<a href="#login/index" class="hd-right">登陆</a>
 </div>
-<div class="first-wrapper qingdan-index">
-	<div class="qingdan-top clean">
-		<div class="qd-top  qd-top-left qd-top-on"  data-type="<%=data.type1[0]%>"><%=data.type1[1]%></div>
-		<div class="qd-top-center">
-			<div class="qingdan-line"></div>
-		</div>
-		<div class="qd-top qd-top-right" data-type="<%=data.type2[0]%>"><%=data.type2[1]%></div>
-	</div>
-	<div class="qingdan-slide">
-		<%if(!data.slide.txt){%>
-			<a href="javascript:;">
-				<img src="resource/images/loadimg.png" data-src="<%=data.slide.img%>" />			
-				<div class="qs-explain">
-					<p class="qs-txt"><%=data.slide.txt%></p>								
-				</div>
-			</a>
-		<%}else{%>
-			<img src="resource/images/loadimg.png" data-src="<%=data.slide.img%>" />			
-			<div class="qs-explain">
-				<ul class="flex-equal qs-btn-box">
-					<li><a href="">10件未完成</a></li>
-					<li class="on"> <a href="">共120件商品</a></li>
-					<li><a href="">10件已完成</a></li>					
-				</ul>				
-			</div>
-		<%}%>		
-	</div>
-	<ul class="qingdan-list js-qingdan-list">				
+<div class="first-wrapper">
+	<div class="wode-area"><img class="portrait" src="<%=data.img%>"></div>
+	<ul class="wode-list">
+		<li>宝宝昵称：安妮宝宝</li>
+		<li><a href="#xinxi/index">信息设置<span class="right">&gt;</span></a></li>
+		<li><a href="#list/index">喜欢的<span class="right">&gt;</span></a></li>
+		<li><a href="#list/index">我的收藏<span class="right">&gt;</span></a></li>
+		<!-- <li>收货地址<span class="right">&gt;</span></li> -->
 	</ul>
-	<div class="list-loading js-list-loading">
-		正在奋力加载中 <i class="loading-icon"></i>
-	</div>
 </div>

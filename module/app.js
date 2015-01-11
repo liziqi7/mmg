@@ -6,7 +6,7 @@ define(function(require, exports) {
         map: {
             "index": 0,
             "qingdan": 1,
-            "kefu": 2
+            "wode": 2
         },
         initialize: function() {
             var t = this;
@@ -57,8 +57,12 @@ define(function(require, exports) {
             //初始化导航菜单视图
             this.nav = new navView();
         },
-        index: function() {
-            this.loadmodel('index', 'index');
+        index: function() {            
+            if(localStorage.getItem("login")){
+                this.loadmodel('index', 'index');
+            }else{
+                this.loadmodel('login', 'index');
+            }            
         },
         //按照module/action(/conditions) 格式
         loadmodel: function(md, ac, con) {

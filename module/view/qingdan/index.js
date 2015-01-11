@@ -24,6 +24,7 @@ define('', '', function(require) {
 		events: {
 			"click .qd-top-btn": "doSwitchQingdan",
 			"click .qd-right": "doCheckdQingdan",
+			"click .js-dropdown":"doDropdown"
 		},
 		initialize: function() {
 			var t = this;
@@ -66,6 +67,9 @@ define('', '', function(require) {
 			checked = checked ? 0 : 1;
 			$elm.toggleClass("on", checked);
 			$elm.attr("data-checked", checked);
+		},
+		doDropdown:function(){
+
 		},
 		bindEvent: function() {
 			var t = this;

@@ -4,22 +4,22 @@
 	"data": {
 		"totle": "3",
 		"explain": {
-			"img": "resource/images/pic1.png",
-			"txt": "献给萌萌的高富帅大礼包"
+			"img": "resource/images/banner.png",
+			"txt": "越孕越美"
 		},
 		"list": [{
 			"img": "resource/images/pic1.png",
-			"link": "javascript:;",
+			"link": "#shangpin/index",
 			"price": "1200",
-			"word": "献给萌萌的高富帅"
+			"word": "献给萌萌的高富帅献给萌萌的高富帅大礼包"
 		}, {
 			"img": "resource/images/pic2.png",
-			"link": "javascript:;",
+			"link": "#shangpin/index",
 			"price": "100",
 			"word": "高大上的欧美风"
 		}, {
 			"img": "resource/images/pic3.png",
-			"link": "javascript:;",
+			"link": "#shangpin/index",
 			"price": "10",
 			"word": "白雪公主的礼包"
 		}, {

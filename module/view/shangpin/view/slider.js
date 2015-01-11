@@ -34,7 +34,7 @@ define('', '', function(require) {
 				auto: 2000,
 				speed: 800,
 				callback: function(idx) {
-					$("#js-index-sliderIdx li").removeClass().eq(idx % mySwipe.getNumSlides()).addClass("on");
+					t.$el.find(".js-sliderIdx li").removeClass().eq(idx % mySwipe.getNumSlides()).addClass("on");
 				}
 			});
 		}
