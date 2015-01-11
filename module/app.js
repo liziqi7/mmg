@@ -111,6 +111,7 @@ define(function(require, exports) {
                     App.Views[view].changeId && App.Views[view].changeId(cj);
                 } else {
                     App.Views[view].$el.show();
+                    scrollTop();
                     // $(window).trigger('resize');
                 }
             }

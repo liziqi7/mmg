@@ -23,7 +23,7 @@ define('', '', function(require) {
 		bindEvent: function() {
 			var t = this;
 			var $li = t.$el.find(".js-xinxi-status li");
-			$li.click(function() {
+			$li.on("mousedown", function() {
 				var index = $(this).index();
 				$li.each(function(i) {
 					if (index != i) {
@@ -33,7 +33,7 @@ define('', '', function(require) {
 				$(this).toggleClass("on");
 			});
 			var $ligender = t.$el.find(".js-xinxi-gender li");
-			$ligender.click(function() {
+			$ligender.on("mousedown", function() {
 				var index = $(this).index();
 				$ligender.each(function(i) {
 					if (index != i) {
