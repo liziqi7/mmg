@@ -78,6 +78,13 @@ textarea{
   padding:0;
 }
 /*常用属性*/
+.error{
+  display: none;
+  color: red;
+  height: 30px;
+  width: 320px;
+  margin: 0 auto;
+}
 .showInlineBlock{
   display: inline-block;
 }
@@ -286,13 +293,13 @@ textarea{
   background-size: 100%;
 }
 .icon-index{
-  background-position:0  0px;
+  background-position:0  -40px;
 }
 .icon-qingdan{
   background-position:0  -80px;
 }
 .icon-wode{
-  background-position:0  -40px;
+  background-position:0  0px;
 }
 .nav-txt{
   font-size: 0.75em;
@@ -304,13 +311,13 @@ textarea{
   display: block;
 }
 .nav li.on .icon-index{
-  background-position:0  -20px;
+  background-position:0  -60px;
 }
 .nav li.on .icon-qingdan{
   background-position:0  -100px;
 }
 .nav li.on .icon-wode{
-  background-position:0  -60px;
+  background-position:0  -20px;
 }
 .nav li.on .nav-txt{
  color: #f1968b;
@@ -360,7 +367,7 @@ textarea{
   height: 44px;
   width: 30px;
   display: block;
-  padding: 14px 8px;
+  padding: 14px 10px;
 }
 .header .btn-back i{
   width: 36px;
@@ -370,7 +377,7 @@ textarea{
 }
 .header .btn-share{
   position: absolute;
-  right:0px;
+  right:10px;
   top:0px;
   height: 44px;
   width: 30px;
@@ -708,7 +715,8 @@ textarea{
 }
 .slider-box{
   height: 120px;
-  width: 320px;
+  width: 100%;
+  max-width: 480px;
   overflow: hidden;
   margin: 0 auto;
   position: relative;
@@ -939,7 +947,7 @@ textarea{
   text-align: center; 
   color:#719DF7;
   border-radius:50%;  
-  border:2px #719DF7 solid;
+  /*border:2px #719DF7 solid;*/
   line-height: 42px;
 }
 .qd-top-on{
@@ -969,13 +977,14 @@ textarea{
 }
 .qingdan-slide{
   height: 120px;
-  width: 320px;
+  width: 100%;
+  max-width: 480px;
   margin: 0 auto;
   position: relative;  
 }
 .qingdan-slide img{
   width: 100%;
-  max-height: 120px;  
+  height: 100%;  
 }
 .qs-explain{
   position: absolute;
@@ -1283,6 +1292,9 @@ textarea{
 .shangpin-tab-highlight li.on div{ 
   background-color: #EB938B;  
 }
+.shangpin-comment-box{
+  position: relative;
+}
 .shangpin-comment{
 
 }
@@ -1295,21 +1307,24 @@ textarea{
   text-indent: 0.8em;
   display: inline-block;
 }
-.shangpin-comment .comment-btn-box{
+.shangpin-comment-box .comment-btn-box{
   width: 200px;  
   height: 25px;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
-.shangpin-comment .comment-btn-box li{
+.shangpin-comment-box .comment-btn-box li{
   width:50px;
   height: 25px;
   border-left:1px solid #F7D2CE;
   background-color: #f79989;
   float: left;
 }
-.shangpin-comment .comment-btn-box li:nth-child(1){
+.shangpin-comment-box .comment-btn-box li:nth-child(1){
   border:none;
 }
-.shangpin-comment .comment-btn-box a{
+.shangpin-comment-box .comment-btn-box a{
   display: block;
   width:20px;
   height:20px;
@@ -1535,9 +1550,16 @@ input[disabled],input:disabled{
   display: block;
 }
 
-
 @media screen and (min-width: 480px){
   
+}
+@media screen and (min-width: 480px){
+  .slider-box{
+    height: 180px;
+  }
+  .qingdan-slide{
+    height: 180px;
+  }
 }
 @media screen and (min-width: 768px){
   body{

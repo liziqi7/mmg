@@ -32,16 +32,30 @@ window.Jser = {
     log: function(str) {
         window.console && window.console.log(str);
     },
+    infoError: {
+        "1": "系统出错",
+        "100": "注册用户名已存在",
+        "101": "登陆用户名不存在",
+        "102": "登陆密码错误",
+        "110": "该用户已对该商品点过赞"
+    },
+    setItem: function(key, name) {
+        window.localStorage.setItem(key, name);
+    },
+    getItem: function(key) {
+        return window.localStorage.getItem(key) || "";
+    },
     getJSON: function(url, data, sfn, errfn, method, datatype) {
+        var t = this,
+            _data = "";
         data = data || {};
-        var _data = "";
         if (typeof data == "string") {
             _data = "&iTime=" + (new Date()).getTime() + "&";
         } else {
             _data = data;
             _data.iTime = (new Date()).getTime();
         }
-        $("#js-loading").hide();
+        $("#js-loading").show();
         $("body").queue(function() {
             $.ajax({
                 type: method || "get",
@@ -66,14 +80,19 @@ window.Jser = {
                     $("#js-loading").hide();
                     $("body").dequeue();
                     if (!j) Jser.log("no value has returned!")
-                    var s = j.status || j.state,
+                    var s = Number(j.code),
+                        txt,
                         flag = false;
-                    switch (s.toLowerCase()) {
-                        case "success":
+                    if (s != 0 && t.infoError[s]) {
+                        txt = t.infoError[s];
+                        Jser.alert(txt);
+                    }
+                    switch (s) {
+                        case 0:
                             flag = true;
                             break;
-                        case "error":
-                            Jser.log(j.info || j.message);
+                        case 1:
+                            Jser.log("code:" + j.code + " " + txt);
                             break;
                     }
                     if (flag) {
@@ -84,6 +103,15 @@ window.Jser = {
                 }
             });
         });
+    },
+    checklogin: function(data) {
+        if (data.code == 100) {
+
+        }
+    },
+    error: function(elem, txt) {
+        $(elem).show().find("span").text(txt);
+        scrollTop();
     },
     alert: function(txt, callback) {
         var $pop = $("#js-pop-tpl").find(".pop").clone();

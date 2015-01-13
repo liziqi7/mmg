@@ -41,7 +41,7 @@ define('', '', function(require) {
 	});
 	return function(pars) {
 		model.set({
-			action: 'resource/data/index.carouselList.json'
+			action: ST.PATH.ACTION+'carousel/carouselList'
 		});		
 		return new V({
 			el: pars.el

@@ -7,7 +7,7 @@ define('', '', function(require) {
 		template: H,
 		events: {
 			"click .js-back": "goback",
-			"click .js-login-btn":"doLogin"
+			"click .js-login-btn": "doLogin"
 		},
 		initialize: function() {
 			var t = this;
@@ -16,15 +16,49 @@ define('', '', function(require) {
 		//待优化
 		render: function() {
 			var t = this,
-				data ={};
+				data = {};
 			var html = _.template(t.template, data);
 			t.$el.show().html(html);
 		},
-		doLogin:function(){
-			localStorage.setItem("login",1);
-			window.location.href = "#index/index";
+		doLogin: function() {
+			var t = this;
+			if (t.checkLogin()) {
+				var _data = t.$el.find("#js-login-form").serializeArray();
+				var name, val;
+				var _locData={};
+				$.each(_data, function(i, item) {
+					name = item.name;
+					val = $.trim(item.value);
+					_data[i].value = val;
+					_locData[name]=val;
+				})
+				Jser.getJSON(ST.PATH.ACTION + "user/login", _data, function(data) {
+					Jser.setItem("uname", data.data.uname);
+					Jser.setItem("password",_locData["password"]);
+					Jser.setItem("user_id", data.data.user_id);
+					window.location.href = "#index/index";
+				}, function() {
+
+				}, "post");
+
+			}
 		},
-		goback:function(){
+		checkLogin: function() {
+			var t = this;
+			var t1 = t.$el.find(".js-uname");
+			var t2 = t.$el.find(".js-password");
+			var v1 = $.trim(t1.val());
+			var v2 = $.trim(t2.val());
+			if (v1.length == 0) {
+				Jser.error(t.$el.find(".js-error"), "请输入用户名");
+				return false;
+			} else if (v2.length == 0) {
+				Jser.error(t.$el.find(".js-error"), "请输入密码");
+				return false;
+			}
+			return true;
+		},
+		goback: function() {
 			var t = this;
 			if (window.history && window.history.length > 2) {
 				window.history.back();

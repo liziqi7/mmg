@@ -58,7 +58,7 @@ define(function(require, exports) {
             this.nav = new navView();
         },
         index: function() {            
-            if(localStorage.getItem("login")){
+            if(Jser.getItem("user_id")){
                 this.loadmodel('index', 'index');
             }else{
                 this.loadmodel('login', 'index');
