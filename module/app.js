@@ -6,7 +6,8 @@ define(function(require, exports) {
         map: {
             "index": 0,
             "qingdan": 1,
-            "wode": 2
+            "go": 2,
+            "wode": 3
         },
         initialize: function() {
             var t = this;

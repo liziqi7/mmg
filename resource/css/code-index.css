@@ -271,8 +271,7 @@ textarea{
   z-index:9;
   width: 100%;  
   height:50px; 
-  /*border-top: 1px solid #000;*/
-  background:#fff; 
+  background:#f6f0f0; 
 }
 .nav li{  
   text-align: center;  
@@ -301,6 +300,9 @@ textarea{
 .icon-wode{
   background-position:0  0px;
 }
+.icon-go{
+  background-position:0  -120px;
+}
 .nav-txt{
   font-size: 0.75em;
   width: 100%;
@@ -318,6 +320,9 @@ textarea{
 }
 .nav li.on .icon-wode{
   background-position:0  -20px;
+}
+.nav li.on .icon-go{
+  background-position:0  -140px;
 }
 .nav li.on .nav-txt{
  color: #f1968b;
@@ -407,7 +412,7 @@ textarea{
   z-index: 9;
 }
 .first-wrapper{
-  padding-bottom:50px;    
+  padding-bottom:90px;    
 }
 .second-wrapper{
   padding: 44px 0 50px;
@@ -945,35 +950,67 @@ textarea{
   height: 46px;
   overflow: hidden;
   text-align: center; 
-  color:#719DF7;
-  border-radius:50%;  
-  /*border:2px #719DF7 solid;*/
-  line-height: 42px;
+  color:#719DF7; 
+  line-height: 46px;
 }
 .qd-top-on{
   background-color: #719DF7;
   color:#fff;
 }
-.qd-top-left{
-  float: left;
-  margin-left: 10px;
-}
-.qd-top-right{
-  float: right;
-  margin-right: 10px;
-}
 .qd-top-center{
   float: left;
-  width: 198px;
+  width: 224px;
   height: 48px;
-  margin-left: 3px;
+  position: relative;
+}
+.qd-pitch{
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background:#fff url(../images/qingdan-icon.png) 0 0 no-repeat;
+  background-size: 100%;
+  left: 50%;
+  margin-left: -25px;
+  top: 0;
+  padding: 4px;
+}
+.triangle-left{
+    width: 0;
+    height: 0;
+    position: absolute;
+    top:18px;
+    left:20%;
+    border-top: 5px solid transparent;
+    border-right: 10px solid #d1e7ff;
+    border-bottom: 5px solid transparent;
+}
+.triangle-right{
+    width: 0;
+    height: 0;
+    position: absolute;
+    top:18px;
+    right:20%;
+    border-top: 5px solid transparent;
+    border-left: 10px solid #d1e7ff;
+    border-bottom: 5px solid transparent;
+}
+.qd-pitch div{
+  border: 1px #bdd1fb solid;
+  background-color: #d1e7ff;
+  color: #fff;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  padding-top:5px;
+  font-size: 0.875em;
 }
 .qingdan-line{
   width: 100%;
   height: 1px;
-  border: 1px #DCDCDC solid;
+  border-top: 1px #DCDCDC solid;
   overflow: hidden;
-  margin-top: 21px;
+  margin-top: 22px;
 }
 .qingdan-slide{
   height: 120px;
@@ -1549,6 +1586,67 @@ input[disabled],input:disabled{
   font-size: 0.875em;
   display: block;
 }
+.go-wrapper{
+  position: relative;
+ }
+.go-add{
+  font-size:2em;
+}
+.go-list li{
+  position: relative;
+  height: 70px;
+  border-bottom:1px #cccccc solid;
+  padding: 0 36px 0 16px;
+}
+.go-list li a{
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+}
+.go-list .p1{
+  /*font-size: 0.875em;*/
+  line-height: 43px;
+  color: #302e2e;
+  height: 43px;
+  overflow: hidden;
+}
+.go-list .p2{
+  color: #989797;
+  font-size: 0.75em;
+  overflow: hidden;
+  height: 16px;
+}
+.go-right{
+  position: absolute;
+  right: 0;
+  top: 25px;
+}
+.icon-arrows-left{
+  display: block;
+  width: 36px;
+  height: 30px;
+  background-position: 0 -680px; 
+}
+.go-new{
+  display: block;
+  color: #a6a6a6;
+  width: 90%;
+  margin:0 auto;
+  height: 48px;
+  border:1px dashed #a6a6a6;
+  text-align: center;
+  line-height: 48px;
+  cursor: pointer;
+ /* -webkit-transform:translateY(300px);
+  transform:translateY(300px);*/
+}
+
+
+
+
+
+
+
 
 @media screen and (min-width: 480px){
   
