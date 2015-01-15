@@ -45,7 +45,7 @@ window.Jser = {
     getItem: function(key) {
         return window.localStorage.getItem(key) || "";
     },
-    getJSON: function(url, data, sfn, errfn, method, datatype) {
+    getJSON: function(url, data, sfn, errfn, method, datatype, isload) {
         var t = this,
             _data = "";
         data = data || {};
@@ -55,7 +55,7 @@ window.Jser = {
             _data = data;
             _data.iTime = (new Date()).getTime();
         }
-        $("#js-loading").show();
+        isload && $("#js-loading").show();
         $("body").queue(function() {
             $.ajax({
                 type: method || "get",
@@ -104,9 +104,64 @@ window.Jser = {
             });
         });
     },
-    checklogin: function(data) {
-        if (data.code == 100) {
-
+    /*    
+       获取文档大小
+       @eg
+       $.documentSize();
+   */
+    documentSize: function(d) {
+        d = d || document;
+        var c = d.documentElement,
+            b = d.body,
+            e = d.compatMode == 'CSS1Compat' ? c : b,
+            y = 'clientHeight',
+            l = 'scrollLeft',
+            t = 'scrollTop',
+            w = 'scrollWidth',
+            h = 'scrollHeight';
+        return {
+            fullWidth: e.scrollWidth,
+            fullHeight: Math.max(e.scrollHeight, e[y]),
+            viewWidth: e.clientWidth,
+            viewHeight: e[y],
+            scrollLeft: c[l] || b[l],
+            scrollTop: c[t] || b[t],
+            scrollWidth: c[l] || b[l],
+            scrollHeight: c[t] || b[t],
+            clientLeft: e.clientLeft,
+            clientTop: e.clientTop
+        }
+    },
+    /*    
+     获取元素基本信息
+     @eg
+     $.getBound("test")
+     */
+    getBound: function(el, a) {
+        var l = 0,
+            w = 0,
+            h = 0,
+            t = 0,
+            p = document.getElementById(el) || el,
+            o = $.documentSize(),
+            s = 'getBoundingClientRect',
+            r;
+        if (p) {
+            a = document.getElementById(a);
+            w = p.offsetWidth;
+            h = p.offsetHeight;
+            if (p[s] && !a) {
+                r = p[s]();
+                l = r.left + o.scrollLeft - o.clientLeft;
+                t = r.top + o.scrollTop - o.clientTop
+            } else
+                for (; p && p != a; l += p.offsetLeft || 0, t += p.offsetTop || 0, p = p.offsetParent) {}
+        }
+        return {
+            x: l,
+            y: t,
+            w: w,
+            h: h
         }
     },
     error: function(elem, txt) {

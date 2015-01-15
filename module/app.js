@@ -109,11 +109,10 @@ define(function(require, exports) {
                 });
                 if (result) {
                     App.Views[view].cj = $.extend({}, cj);
-                    App.Views[view].changeId && App.Views[view].changeId(cj);
+                    App.Views[view].changePars && App.Views[view].changePars(cj);
                 } else {
                     App.Views[view].$el.show();
                     scrollTop();
-                    // $(window).trigger('resize');
                 }
             }
         },

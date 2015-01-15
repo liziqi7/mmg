@@ -6,12 +6,12 @@ define('base/model', '', function(require) {
         //重载数据获取方法
         sync: function(method, model, options) {
             var params = _.extend({
-                type: 'get',
+                type: "get",
                 url: model.url,
                 dataType: "json",
-                data: model.get("pars")
+                data: "",
             }, options);
-            return Jser.getJSON(params.url, params.data, params.success, params.error, params.method, params.dateType);
+            return Jser.getJSON(params.url, params.data, params.success, params.error, params.method, params.dateType, params.isload);
         },
         initialize: function() {
             var t = this;
@@ -25,8 +25,7 @@ define('base/model', '', function(require) {
         },
         fetchData: function() {
             var t = this;
-            this.url = this.get("action");
-
+            this.url = ST.PATH.ACTION + this.get("action");
             t.fetch({
                 cache: true,
                 success: function(rs) {
@@ -40,7 +39,11 @@ define('base/model', '', function(require) {
                         data: rs,
                         rd: new Date().getTime()
                     });
-                }
+                },
+                type: this.get("type") || "get",
+                data: this.get("pars"),
+                isload: typeof this.get("isload") == "undefined"
+
             })
         }
     });

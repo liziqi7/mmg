@@ -1,6 +1,6 @@
 <div class="slider-box slider-box2">
     <ul class="slider-list">
-        <%_.each(data.list,function(item){%>
+         <%_.each(data.pictureList,function(item){%>
             <li>
                 <img src="resource/images/loadimg.png" data-src="<%=item.img%>" alt=""/>               
             </li>
@@ -8,7 +8,7 @@
     </ul>
     <div class="slider-point">
         <ul class="js-sliderIdx">
-            <%_.each(data.list,function(item,i){%>
+            <%_.each(data.pictureList,function(item,i){%>
                <li class="<%=(i==0?"on":"")%>"></li>
             <%})%>                         
         </ul>

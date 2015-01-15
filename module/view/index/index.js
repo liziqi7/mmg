@@ -1,25 +1,26 @@
 define('', '', function(require) {
 	var B = require('backbone');
 	var M = require('base/model');
-	
+
 	var H = require('text!../../../tpl/index/index.html');
 	var Slider = require("view/index/view/slider");
 	var list_tpl = require('text!../../../tpl/index/view/list.html');
-	
+
 	var model = new M({
 		pars: {
-			"pageNo": "1"
+			"page": "1"
 		}
 	});
 	var indexSelf;
 	var V = B.View.extend({
 		model: model,
 		template: H,
-		isEnableLoadData: true,
+		
 		iTimer: null,
-		isLoad: true,
-		pageNo: 1,
-		totalPage: 1,
+		isLoad: false, // 当加载数据的时候 禁止使用滑动加载 ,默认是false 即没有加载数据
+		totalSize: 6, // 每次显示的个数
+		page: 1, // 分页
+		totalPage: 1, // 总页数
 		events: {
 
 		},
@@ -27,7 +28,7 @@ define('', '', function(require) {
 			var t = this;
 			indexSelf = this;
 			t.listenToOnce(t.model, "change:data", function() {
-				t.render();		
+				t.render();
 				t.listenTo(t.model, "sync", function() {
 					t.syncRender();
 				});
@@ -38,48 +39,55 @@ define('', '', function(require) {
 			var t = this,
 				data = t.model.toJSON();
 			var html = _.template(t.template, data);
-			t.totalPage =Number(data.totalPage);
+			t.totalSize = Number(data.page.totalSize);
+			t.totalPage = Math.ceil(data.page.pageSize / t.totalSize);
 			t.$el.show().html(html);
 			// 轮播图
 			new Slider({
 				el: t.$el.find(".js-slider-box")
 			});
-			t.bindEvent();	
+			t.bindEvent();
 		},
 		syncRender: function() {
 			var t = this,
 				data = t.model.toJSON();
+			t.isLoad = false;
 			var _html = _.template(list_tpl, data);
-			t.$el.find(".js-index-list").append(_html);
-			Jser.loadimages(t.$el.find(".js-index-list"));
+			var $list = t.$el.find(".js-index-list");
+			$list.append(_html);
+			Jser.loadimages($list);
+
 		},
 		bindEvent: function() {
 			var t = this;
-			t.killScroll(true);
-			$(window).on("scroll.index", t.doScroll);		
-		},		
+			t.finishScroll();
+			$(window).on("scroll.index", t.doScroll);
+		},
 		doScroll: function() {
-			var t = indexSelf;
-			if (!t.iTimer && t.isEnableLoadData && t.isLoad && (window.location.hash == "" || window.location.hash.indexOf("#index/index") != -1)) {
+			var t = indexSelf,
+				hash = window.location.hash;
+			if (!t.iTimer && !t.isLoad && (hash == "" || hash.indexOf("#index/index") != -1)) {
 				t.iTimer = setTimeout(function() {
-					if ($(document).height() - $("body").scrollTop() - $(window).height() < 100) {
+					var size = Jser.documentSize();
+					if (size.fullHeight - size.scrollTop - size.viewHeight < 20) {
 						t.loadData();
 					}
 					t.clearTime();
 				}, 200);
 			}
-			t.killScroll();
 		},
 		loadData: function() {
 			var t = this;
-			t.pageNo++;
-			if (t.pageNo <= t.totalPage) {
+			t.page++;
+			if (t.page <= t.totalPage) {
 				var pars = {
-					"pageNo": t.pageNo
+					"page": t.page
 				}
+				t.isLoad = true;
+				t.$el.find(".js-list-loading").show();
 				t.changePars(pars);
 			} else {
-				t.overScroll();
+				t.finishScroll();
 			}
 		},
 		clearTime: function() {
@@ -89,19 +97,11 @@ define('', '', function(require) {
 			}
 			t.iTimer = null;
 		},
-		killScroll: function(isKill) {
+		finishScroll: function() {
 			var t = this;
-			if ((!t.isEnableLoadData && (window.location.hash == "" || window.location.hash.indexOf("#index/index") != -1)) || !!isKill) {
-				$(window).off('scroll.index', t.doScroll);
-				t.clearTime();
-			}
-		},
-		overScroll: function() {
-			var t = this;
-			t.isEnableLoadData = false;
 			t.$el.find(".js-list-loading").hide();
-			t.isLoad = false;
-			t.killScroll(true);
+			$(window).off('scroll.index', t.doScroll);
+			t.clearTime();
 		},
 		changePars: function(pars) {
 			var t = this;
@@ -112,7 +112,7 @@ define('', '', function(require) {
 	});
 	return function(pars) {
 		model.set({
-			action: 'resource/data/index.json'
+			action: 'favorite/publicFavoriteList'
 		});
 		return new V({
 			el: $("#" + pars.model + "_" + pars.action)

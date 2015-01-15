@@ -412,7 +412,7 @@ textarea{
   z-index: 9;
 }
 .first-wrapper{
-  padding-bottom:90px;    
+  padding-bottom:50px;    
 }
 .second-wrapper{
   padding: 44px 0 50px;
@@ -1088,7 +1088,7 @@ textarea{
   padding-left: 4px;
 }
 .qingdan-list li{
-  border:1px solid #EBEBEB;
+  border-bottom:1px solid #EBEBEB;
   height: 95px;
   width: 100%;
   position: relative;
@@ -1149,7 +1149,7 @@ textarea{
   background-color:#fff; 
 }
 .list-top{
-  height: 120px;
+  height: 200px;
   width: 320px;
   margin:0 auto;
   overflow: hidden;

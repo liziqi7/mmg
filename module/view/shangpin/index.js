@@ -4,51 +4,51 @@ define('', '', function(require) {
 
 	var H = require('text!../../../tpl/shangpin/index.html');
 
-	var Slider = require("view/shangpin/view/slider");
+	// var Slider = require("view/shangpin/view/slider");
 
 
 	var list_tpl = require('text!../../../tpl/shangpin/view/list.html');
 
 	var model = new M({
-		pars: {
-			"pageNo": "1"
-		}
+		action: 'product/productByPid'
 	});
-	var indexSelf;
 	var V = B.View.extend({
 		model: model,
 		template: H,
-		isEnableLoadData: true,
-		iTimer: null,
-		isLoad: true,
-		pageNo: 1,
-		totalPage: 1,
 		events: {
 			"click .js-back": "goback",
-			"click .js-share": "doShare"
+			"click .js-share": "doShare",
+			"click .js-praise": "doPraise"
 		},
 		initialize: function() {
 			var t = this;
 			indexSelf = this;
 			t.listenToOnce(t.model, "change:data", function() {
 				t.render();
-				t.listenTo(t.model, "sync", function() {
-					t.syncRender();
-				});
+				// t.listenTo(t.model, "sync", function() {
+				// 	t.syncRender();
+				// });
 			});
 		},
 		//待优化
 		render: function() {
 			var t = this,
 				data = t.model.toJSON();
+			data.data = data.data[0];
+			if (!data.data.pictureList) {
+				data.data.pictureList = [];
+				data.data.pictureList.push(data.data.picture);
+			}
 			var html = _.template(t.template, data);
-			t.totalPage = Number(data.totalPage);
 			t.$el.show().html(html);
+
+
 			// 轮播图
-			new Slider({
-				el: t.$el.find(".js-slider-box")
-			});
+			// new Slider({
+			// 	el: t.$el.find(".js-slider-box")
+			// });
 			t.bindEvent();
+			Jser.loadimages();
 		},
 		syncRender: function() {
 			var t = this,
@@ -65,8 +65,39 @@ define('', '', function(require) {
 				window.location.href = "#";
 			}
 		},
-		doShare:function(){
-			Jser.share();
+		doShare: function() {
+			var t = this;
+			var fid = t.model.get("pars")["pid"];
+			var url = ST.PATH.SHARE + "?fid=" + fid;
+			Jser.share({
+				imgUrl: "",
+				lineLink: url,
+				shareTitle: "妈咪口袋:" + Jser.getItem("fid" + fid),
+				descContent: ""
+			});
+		},
+		doPraise: function() {
+			var t = this;
+			var pid = t.model.get("pars")["pid"];
+			var _data = {
+				"pid": pid,
+				"user_id": Jser.getItem("user_id")
+			}
+			Jser.getJSON(ST.PATH.ACTION + "product/productAddGood", _data, function(data) {
+				// var data = {
+				// 	code: 0
+				// 	data: true
+				// 	product_id: "178"
+				// 	user_id: "3"
+				// }
+				if (Number(data.code) == 0) {
+					var txt = "点赞";
+					Jser.alert(txt);
+				}
+
+			}, function() {
+
+			}, "post");
 		},
 		bindEvent: function() {
 			var t = this;
@@ -143,7 +174,10 @@ define('', '', function(require) {
 	});
 	return function(pars) {
 		model.set({
-			action: 'resource/data/shangpin.json'
+			pars: {
+				"pid": pars.pid,
+				"user_id": Jser.getItem('user_id')
+			}
 		});
 		return new V({
 			el: $("#" + pars.model + "_" + pars.action)

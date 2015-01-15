@@ -2,33 +2,30 @@ define('', '', function(require) {
 	var B = require('backbone');
 	var M = require('base/model');
 	var H = require('text!../../../tpl/qingdan/index.html');
-
-	// var Slider = require("view/index/view/slider");
-
 	var list_tpl = require('text!../../../tpl/qingdan/view/list.html');
 
 	var model = new M({
-		pars: {
-			"pageNo": "1"
-		}
+		action: 'product/productTypeUserList'
 	});
-	var qingdanSelf;
+	var indexSelf;
 	var V = B.View.extend({
 		model: model,
 		template: H,
-		isEnableLoadData: true,
+
 		iTimer: null,
-		isLoad: true,
-		pageNo: 1,
-		totalPage: 1,
+		isLoad: false, // 当加载数据的时候 禁止使用滑动加载 ,默认是false 即没有加载数据
+		totalSize: 6, // 每次显示的个数
+		page: 1, // 分页
+		totalPage: 1, // 总页数
+
 		events: {
 			"click .qd-top-btn": "doSwitchQingdan",
-			"click .qd-right": "doCheckdQingdan",
-			"click .js-dropdown":"doDropdown"
+			"click .js-qd-checked": "doCheckdQingdan",
+			"click .js-dropdown": "doDropdown"
 		},
 		initialize: function() {
 			var t = this;
-			qingdanSelf = this;
+			indexSelf = this;
 			t.listenToOnce(t.model, "change:data", function() {
 				t.render();
 				t.listenTo(t.model, "sync", function() {
@@ -48,6 +45,7 @@ define('', '', function(require) {
 		syncRender: function() {
 			var t = this,
 				data = t.model.toJSON();
+			t.isLoad = false;
 			var _html = _.template(list_tpl, data);
 			t.$el.find(".js-qingdan-list").append(_html);
 			Jser.loadimages(t.$el);
@@ -68,36 +66,37 @@ define('', '', function(require) {
 			$elm.toggleClass("on", checked);
 			$elm.attr("data-checked", checked);
 		},
-		doDropdown:function(){
 
-		},
 		bindEvent: function() {
 			var t = this;
-			t.killScroll(true);
+			t.finishScroll();
 			$(window).on("scroll.qingdan", t.doScroll);
 		},
 		doScroll: function() {
-			var t = qingdanSelf;
-			if (!t.iTimer && t.isEnableLoadData && t.isLoad && (window.location.hash == "" || window.location.hash.indexOf("#qingdan/index") != -1)) {
+			var t = indexSelf,
+				hash = window.location.hash;
+			if (!t.iTimer && !t.isLoad && hash.indexOf("#qingdan/index") != -1) {
 				t.iTimer = setTimeout(function() {
-					if ($(document).height() - $("body").scrollTop() - $(window).height() < 100) {
+					var size = Jser.documentSize();
+					if (size.fullHeight - size.scrollTop - size.viewHeight < 20) {
 						t.loadData();
 					}
 					t.clearTime();
 				}, 200);
 			}
-			t.killScroll();
 		},
 		loadData: function() {
 			var t = this;
-			t.pageNo++;
-			if (t.pageNo <= t.totalPage) {
+			t.page++;
+			if (t.page <= t.totalPage) {
 				var pars = {
-					"pageNo": t.pageNo
+					"pageNo": t.page
 				}
+				t.isLoad = true;
+				t.$el.find(".js-list-loading").show();
 				t.changePars(pars);
 			} else {
-				t.overScroll();
+				t.finishScroll();
 			}
 		},
 		clearTime: function() {
@@ -107,19 +106,11 @@ define('', '', function(require) {
 			}
 			t.iTimer = null;
 		},
-		killScroll: function(isKill) {
+		finishScroll: function() {
 			var t = this;
-			if ((!t.isEnableLoadData && (window.location.hash == "" || window.location.hash.indexOf("#qingdan/index") != -1)) || !!isKill) {
-				$(window).off('scroll.qingdan', t.doScroll);
-				t.clearTime();
-			}
-		},
-		overScroll: function() {
-			var t = this;
-			t.isEnableLoadData = false;
 			t.$el.find(".js-list-loading").hide();
-			t.isLoad = false;
-			t.killScroll(true);
+			$(window).off('scroll.qingdan', t.doScroll);
+			t.clearTime();
 		},
 		changePars: function(pars) {
 			var t = this;
@@ -130,7 +121,9 @@ define('', '', function(require) {
 	});
 	return function(pars) {
 		model.set({
-			action: 'resource/data/qingdan.data.json'
+			pars: {
+				"user_id": Jser.getItem('user_id')
+			}
 		});
 		return new V({
 			el: $("#" + pars.model + "_" + pars.action)
