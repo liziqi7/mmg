@@ -207,7 +207,7 @@ window.Jser = {
         return uid;
     },
     share: function(params) {
-        if ($.isEmptyObject(params)) {
+        if (!$.isEmptyObject(params)) {
             $.extend(WeiXinShare, params);
         }
         this.showShare();
