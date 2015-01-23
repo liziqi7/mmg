@@ -108,19 +108,10 @@ define('', '', function(require) {
 		doNew: function() {
 
 		},
-		changePars: function(pars) {
+		changePars: function() {
 			var t = this;
-			var data = $.extend({}, t.model.get("pars"));
-			$.extend(data, pars);
-			t.model.set("pars", data);
-		},
-		changeId: function(pars) {
-			var t = this;
-			var pars = {
-				"beauticianID": pars.beauticianID,
-				"worksID": pars.worksID,
-			}
-			t.changePars(pars);
+			// t.model.fetchData();
+			t.$el.show()
 		}
 	});
 	return function(pars) {

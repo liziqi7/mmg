@@ -356,6 +356,9 @@ textarea{
   display: block;
   font-size: 0.875em;
 }
+.hd-right2{
+  width: 60px;
+}
 .header .hd-btn{
   position: absolute;
   width: 45px;
@@ -885,6 +888,15 @@ textarea{
   top: 0;
   opacity: 0;
 }
+.hd-dropdown2{
+  position: absolute;
+  width: 50px;
+  height: 44px;
+  right: 0;
+  top: 0;
+  opacity: 0;
+  z-index: 2;
+}
 /*.hd-dropdown{
   position: fixed;
   left:0px;
@@ -995,6 +1007,16 @@ textarea{
     border-top: 5px solid transparent;
     border-left: 10px solid #d1e7ff;
     border-bottom: 5px solid transparent;
+}
+.triangle-bottom{
+    width: 0;
+    height: 0;
+    position: absolute;
+    top:20px;
+    right:5px;
+    border-left: 4px solid transparent;
+    border-top: 6px solid #fff;
+    border-right: 4px solid transparent;
 }
 .qd-pitch div{
   border: 1px #bdd1fb solid;
@@ -1643,10 +1665,40 @@ input[disabled],input:disabled{
  /* -webkit-transform:translateY(300px);
   transform:translateY(300px);*/
 }
+.add-wrapper{
+  padding: 0 10px;
 
-
-
-
+}
+.add-wrapper .red{
+  line-height: 30px;
+}
+.add-wrapper .p1{
+  height: 44px;
+  line-height: 44px;
+  font-size: 0.875em;
+  color: #999999;
+}
+.add-wrapper .ipt{
+  height: 44px;
+  width: 100%;
+  padding: 11px 10px;
+  background-color: #9a9a9a;
+  border-radius: 4px;
+}
+.add-wrapper .ipt input{
+  height: 20px;
+  width: 100%;
+  line-height: 20px;
+  font-size: 0.875em;
+  display: block;
+  color: #fff;
+}
+.emptyp1{
+  color: #636363;
+  width: 100%;
+  text-align: center;
+  margin-top: 180px;
+}
 
 
 

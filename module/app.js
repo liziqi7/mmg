@@ -58,12 +58,12 @@ define(function(require, exports) {
             //初始化导航菜单视图
             this.nav = new navView();
         },
-        index: function() {            
-            if(Jser.getItem("user_id")){
+        index: function() {
+            if (Jser.getItem("user_id")) {
                 this.loadmodel('index', 'index');
-            }else{
+            } else {
                 this.loadmodel('login', 'index');
-            }            
+            }
         },
         //按照module/action(/conditions) 格式
         loadmodel: function(md, ac, con) {
@@ -101,13 +101,19 @@ define(function(require, exports) {
                 })
             } else {
                 var result = false;
-                $.each(App.Views[view].cj, function(i, item) {
-                    if (cj[i] != item) {
-                        result = true;
-                        return false;
-                    }
-                });
+                if (md == "go" || md == "add") {
+                    result = true;
+                } else {
+                    $.each(App.Views[view].cj, function(i, item) {
+                        if (cj[i] != item) {
+                            result = true;
+                            return false;
+                        }
+                    });
+                }
                 if (result) {
+                    delete cj["model"];
+                    delete cj["action"];
                     App.Views[view].cj = $.extend({}, cj);
                     App.Views[view].changePars && App.Views[view].changePars(cj);
                 } else {

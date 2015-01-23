@@ -40,7 +40,7 @@ define('', '', function(require) {
 				data = t.model.toJSON();
 			var html = _.template(t.template, data);
 			t.totalSize = Number(data.page.totalSize);
-			t.totalPage = Math.ceil(data.page.pageSize / t.totalSize);
+			t.totalPage = Math.ceil( t.totalSize/data.page.pageSize);
 			t.$el.show().html(html);
 			// 轮播图
 			new Slider({

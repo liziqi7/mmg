@@ -25,7 +25,13 @@ define('base/model', '', function(require) {
         },
         fetchData: function() {
             var t = this;
-            this.url = ST.PATH.ACTION + this.get("action");
+
+            if (this.get("action").indexOf(".json") == -1) {
+                this.url = ST.PATH.ACTION + this.get("action");
+            } else {
+                this.url = this.get("action");
+            }
+
             t.fetch({
                 cache: true,
                 success: function(rs) {
