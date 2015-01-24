@@ -101,7 +101,7 @@ define(function(require, exports) {
                 })
             } else {
                 var result = false;
-                if (md == "go" || md == "add") {
+                if (md == "go" || md == "add"||md=="forget") {
                     result = true;
                 } else {
                     $.each(App.Views[view].cj, function(i, item) {

@@ -2,7 +2,7 @@
 <%item.fid&&Jser.setItem("fid"+item.fid,item.fname)%>
 <li>
 	<a href="#list/index/fid:<%=item.fid%>"  data-fname="<%=item.fname%>" data-fdescribe="<%=item.fdescribe%>">
-		<i class="mark-icon<%=item.user_id==localStorage.user_id?"-on js-mark-on":""%> icon"></i>
+		<i class="mark-icon-on icon js-mark" data-on="<%=item.user_id==localStorage.user_id?"1":"0"%>"></i>
 		<img src="resource/images/loadimg.png" data-src="<%=item.picture%>">
 		<span class="count-btn btn"><%=item.pnum%>件商品</span>
 		<!-- <p class="index-list-txt"><%=item.fdescribe%></p> -->

@@ -29,6 +29,45 @@ window.Jser = {
             }
         }
     },
+    uname: function(name) {
+        if (name) {
+            name = name.substring(0, 3) + "****" + name.substring(8, 11);
+        } else {
+            name = "匿名";
+        }
+        return name;
+    },
+    prefixImg: function(src, high) {
+        if (!!high) {
+            var arr = ["/n1/", "_400x400q90", ""];
+        } else {
+            var arr = ["/n3/", "_200x200q90", "._SL500_SS100_"];
+        }
+        //JD
+        if (src.indexOf("360buyimg.com/") != -1) {
+            // http://img13.360buyimg.com/n1/jfs/t130/126/4881294294/146165/c187b01c/537ad954N944b3be6.jpg
+            // n1 由n0到n9从大到小
+            src = src.replace(/\/n\d\//, arr[0]);
+            return src;
+        }
+        // tmall
+        if (src.indexOf("alicdn.com/") != -1) {
+            // http://gi3.md.alicdn.com/bao/uploaded/i3/TB1p1N4GVXXXXbsXpXXXXXXXXXX_!!0-item_pic.jpg_600x600q90.jpg
+            // 600x600 为任意从20-600的数   但是x两边的数必须相同
+            src = src.replace(/_\d+x\d+q90/, arr[1]);
+            return src;
+        }
+        // amazoncn
+        if (src.indexOf("images-amazon.com/") != -1) {
+            // http://ec4.images-amazon.com/images/I/51U7naEevEL._SX38_SY50_CR,0,0,38,50_.jpg
+            // http://ec4.images-amazon.com/images/I/51U7naEevEL._SX38_SY50_CR,0,0,60,60_.jpg
+            // http://ec4.images-amazon.com/images/I/51U7naEevEL._SL500_SS100_.jpg
+            // http://ec4.images-amazon.com/images/I/51U7naEevEL.jpg
+            src = src.replace(/\._.+_/, arr[2]);
+            return src;
+        }
+        return src;
+    },
     log: function(str) {
         window.console && window.console.log(str);
     },

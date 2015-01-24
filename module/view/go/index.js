@@ -10,7 +10,7 @@ define('', '', function(require) {
 		model: model,
 		template: H,
 		events: {
-
+			"click .js-golist-remove": "doRemove"
 		},
 		initialize: function() {
 			var t = this;
@@ -23,13 +23,11 @@ define('', '', function(require) {
 		render: function() {
 			var t = this,
 				data = t.model.toJSON();
-			// data.data.beauticianID=t.model.get("pars").beauticianID;
 			var html = _.template(t.template, data);
 			t.$el.show().html(html);
 			var h = Math.max($(document).height() - t.$el.height() - 20, 20);
 			t.$el.find(".js-go-new").css("transform", "translateY(" + h + "px)");
 			t.bindEvent();
-			// Jser.loadimages();
 		},
 		bindEvent: function() {
 			var t = this;
@@ -39,12 +37,8 @@ define('', '', function(require) {
 			aLi.on("touchstart", function(event) {
 				var touches = event.originalEvent.touches[0];
 				start = {
-
-					// get initial touch coords
 					x: touches.pageX,
 					y: touches.pageY,
-
-					// store time to determine touch duration
 					// 获取开始时间戳
 					time: +new Date
 
@@ -65,7 +59,6 @@ define('', '', function(require) {
 					}
 					// event.preventDefault();
 					// event.stopPropagation();
-
 				if (typeof isScrolling == 'undefined') {
 					isScrolling = !!(isScrolling || Math.abs(delta.x) < Math.abs(delta.y));
 				}
@@ -74,12 +67,9 @@ define('', '', function(require) {
 					if (direction) {
 						t.translate(this, -100, 400);
 					} else {
-						t.translate(this, 100, 400);
+						t.translate(this, 0, 400);
 					}
-
-
 				}
-
 			}
 
 			function end() {
@@ -104,6 +94,11 @@ define('', '', function(require) {
 				style.MozTransform =
 				style.OTransform = 'translateX(' + dist + 'px)';
 
+		},
+		doRemove: function(e) {
+			var $elem = $(e.currentTarget);
+			var t = this;
+			$elem.parent().remove();
 		},
 		doNew: function() {
 

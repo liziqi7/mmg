@@ -22,7 +22,7 @@ define('', '', function(require) {
 		},
 		doSign: function() {
 			var t = this;
-			if (t.checkSign()) {
+			if (t.checkSign()) {				
 				var _data = t.$el.find("#js-sign-form").serializeArray();
 				var name, val;
 				var _locData = {};

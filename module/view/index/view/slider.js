@@ -1,7 +1,7 @@
 define('', '', function(require) {
 	var B = require('backbone');
 	var M = require('base/model');
-	var Swipe = require('plusin/swipe')
+	var Swipe = require('plusin/swipe');
 	var H = require('text!../../../../tpl/index/view/slider.html');
 	var model = new M();
 	var V = B.View.extend({

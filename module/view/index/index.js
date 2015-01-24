@@ -15,14 +15,14 @@ define('', '', function(require) {
 	var V = B.View.extend({
 		model: model,
 		template: H,
-		
+
 		iTimer: null,
 		isLoad: false, // 当加载数据的时候 禁止使用滑动加载 ,默认是false 即没有加载数据
 		totalSize: 6, // 每次显示的个数
 		page: 1, // 分页
 		totalPage: 1, // 总页数
 		events: {
-
+			"click .js-mark": "doMark"
 		},
 		initialize: function() {
 			var t = this;
@@ -40,7 +40,7 @@ define('', '', function(require) {
 				data = t.model.toJSON();
 			var html = _.template(t.template, data);
 			t.totalSize = Number(data.page.totalSize);
-			t.totalPage = Math.ceil( t.totalSize/data.page.pageSize);
+			t.totalPage = Math.ceil(t.totalSize / data.page.pageSize);
 			t.$el.show().html(html);
 			// 轮播图
 			new Slider({
@@ -62,6 +62,17 @@ define('', '', function(require) {
 			var t = this;
 			t.finishScroll();
 			$(window).on("scroll.index", t.doScroll);
+		},
+		doMark: function(e) {
+			var $elem = $(e.currentTarget);
+			var on = Number($elem.attr("data-on"));
+			if (on) {
+				Jser.alert("已收藏过");
+			} else {
+				Jser.alert("收藏成功");
+				$elem.attr("data-on","1");
+			}
+			return false;
 		},
 		doScroll: function() {
 			var t = indexSelf,
