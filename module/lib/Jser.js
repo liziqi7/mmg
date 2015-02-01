@@ -71,13 +71,6 @@ window.Jser = {
     log: function(str) {
         window.console && window.console.log(str);
     },
-    infoError: {
-        "1": "系统出错",
-        "100": "注册用户名已存在",
-        "101": "登陆用户名不存在",
-        "102": "登陆密码错误",
-        "110": "该用户已对该商品点过赞"
-    },
     setItem: function(key, name) {
         window.localStorage.setItem(key, name);
     },
@@ -89,7 +82,7 @@ window.Jser = {
             _data = "";
         data = data || {};
         if (typeof data == "string") {
-            _data = "&iTime=" + (new Date()).getTime() + "&";
+            _data = data + "&iTime=" + (new Date()).getTime() + "&";
         } else {
             _data = data;
             _data.iTime = (new Date()).getTime();
@@ -118,21 +111,19 @@ window.Jser = {
                 success: function(j) {
                     $("#js-loading").hide();
                     $("body").dequeue();
-                    if (!j) Jser.log("no value has returned!")
-                    var s = Number(j.code),
-                        txt,
-                        flag = false;
-                    if (s != 0 && t.infoError[s]) {
-                        txt = t.infoError[s];
-                        Jser.alert(txt);
+                    if (!j) {
+                        Jser.alert("与服务器连接异常，请重试")
+                        return false;
                     }
-                    switch (s) {
-                        case 0:
-                            flag = true;
-                            break;
-                        case 1:
-                            Jser.log("code:" + j.code + " " + txt);
-                            break;
+                    var s = Number(j.code),
+                        flag = false;
+                    if (s == 0) {
+                        flag = true;
+                    } else {
+                        if (j.msg) {
+                            Jser.alert(j.msg);
+                        }
+                        Jser.log("code:" + j.code + " " + j.msg);
                     }
                     if (flag) {
                         sfn && sfn(j);

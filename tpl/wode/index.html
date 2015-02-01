@@ -3,9 +3,9 @@
 	<a href="#login/index" class="hd-right">登陆</a>
 </div>
 <div class="first-wrapper">
-	<div class="wode-area"><img class="portrait" src="<%=data.img%>"></div>
+	<div class="wode-area"><img class="portrait" src="<%=data[0].photo%>"></div>
 	<ul class="wode-list">
-		<li>宝宝昵称：<input type="text" value="安妮宝宝" class="name js-name" disabled/><span class="modified sure js-sure">修改</span></li>
+		<li>宝宝昵称：<input type="text" value="<%=data[0].babynickname%>" class="name js-name" disabled/><span class="modified sure js-sure">修改</span></li>
 		<li><a href="#xinxi/index">信息设置<span class="right">&gt;</span></a></li>
 		<li><a href="#guanzhu/index">我的关注<span class="right">&gt;</span></a></li>
 		<!-- <li>收货地址<span class="right">&gt;</span></li> -->

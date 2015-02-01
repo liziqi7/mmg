@@ -3,12 +3,16 @@ define('', '', function(require) {
 	var M = require('base/model');
 	var H = require('text!../../../tpl/wode/index.html');
 
-	var model = new M();
+	var model = new M({
+		pars: {
+			"user_id": Jser.getItem("user_id")
+		}
+	});
 	var V = B.View.extend({
 		model: model,
-		template: H,		
+		template: H,
 		events: {
-			"click .js-sure":"doSure"
+			"click .js-sure": "doSure"
 		},
 		initialize: function() {
 			var t = this;
@@ -28,30 +32,44 @@ define('', '', function(require) {
 			var t = this;
 			t.model.fetchData();
 		},
-		bindEvent:function(){
-			var t=this;
-			t.$el.find(".js-name").blur(function(){
+		bindEvent: function() {
+			var t = this;
+			t.$el.find(".js-name").blur(function() {
 
-			}).focus(function(){
+			}).focus(function() {
 				t.$el.find(".js-sure").show();
 			});
 		},
-		doSure:function(e){
-			var t=this;
-			var $elem=$(e.currentTarget);
-			if($elem.hasClass("modified")){
+		doSure: function(e) {
+			var t = this;
+			var $elem = $(e.currentTarget);
+			if ($elem.hasClass("modified")) {
 				$elem.removeClass("modified").text("保存");
 				t.$el.find(".js-name").removeAttr("disabled").focus();
-			}else{
-				$elem.addClass("modified").text("修改");
-				t.$el.find(".js-name").attr("disabled",true).blur();
+			} else {
+				var v1 = $.trim(t.$el.find(".js-name").val());
+				if (v1.length != 0) {
+					var _data = {
+						"babynickname": v1,
+						"user_id": Jser.getItem("user_id")
+					}
+					Jser.getJSON(ST.PATH.ACTION + "user/perfectUserInfo", _data, function(data) {
+						// Jser.alert(data.msg);
+						$elem.addClass("modified").text("修改");
+						t.$el.find(".js-name").attr("disabled", true).blur();
+					}, function() {
+
+					}, "post");
+				} else {
+					Jser.alert("请输入宝宝昵称");
+				}
 			}
 
 		}
 	});
 	return function(pars) {
 		model.set({
-			action: 'resource/data/wode.json'
+			action: 'user/getUserInfo'
 		});
 		return new V({
 			el: $("#" + pars.model + "_" + pars.action)

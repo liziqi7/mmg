@@ -2,7 +2,7 @@ define('', '', function(require) {
 	var B = require('backbone');
 	var M = require('base/model');
 	var H = require('text!../../../tpl/guanzhu/danpin.html');
-	var list_tpl = require('text!../../../tpl/guanzhu/view/list2.html');
+	var list_tpl = require('text!../../../tpl/guanzhu/view/list.html');
 	var model = new M({
 		action: 'product/productListByFid'
 	});

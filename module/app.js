@@ -28,7 +28,7 @@ define(function(require, exports) {
             } else {
                 this.$el.hide();
             }
-            if (m == "list") {
+            if (m.indexOf("list") != -1) {
                 $('body').addClass("bg1");
             } else {
                 $('body').removeClass("bg1");
@@ -101,7 +101,7 @@ define(function(require, exports) {
                 })
             } else {
                 var result = false;
-                if (md == "go" || md == "add"||md=="forget") {
+                if (md == "go" || md == "add" || md == "forget") {
                     result = true;
                 } else {
                     $.each(App.Views[view].cj, function(i, item) {

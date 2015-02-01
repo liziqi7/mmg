@@ -1,9 +1,9 @@
 <%_.each(data,function(item){%>
-<%item.fid&&Jser.setItem("fid"+item.fid,item.fname)%>
-<li>
-	<a href="#list/index/fid:<%=item.fid%>"  data-fname="<%=item.fname%>" data-fdescribe="<%=item.fdescribe%>">
-		<img src="resource/images/loadimg.png" data-src="<%=item.picture%>">
-		<!-- <p class="index-list-txt"><%=item.fdescribe%></p> -->
-	</a>
-</li>
+	<li>
+		<a href="#shangpin/index/pid:<%=item.pid%>" data-pid="<%=item.pid%>">
+			<img src="resource/images/loadimg.png" data-src="<%=item.picture%>">			
+			<p class="word"><%=item.pname%></p>
+			<p>￥<%=item.price%></p>
+		</a>			
+	</li>		
 <%})%>

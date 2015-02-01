@@ -19,7 +19,7 @@ define('', '', function(require) {
 		//待优化
 		render: function() {
 			var t = this;
-			var html=_.template(t.template,{});
+			var html = _.template(t.template, {});
 			t.$el.show().html(html);
 		},
 		goback: function() {
@@ -34,14 +34,14 @@ define('', '', function(require) {
 			var t = this;
 			if (t.checkStep()) {
 				t.$el.find(".js-error").hide();
-				var url = ST.PATH.ACTION + "";
-				var tel = t.$el.find(".js-forget-tel").val();
-				var _data = "tel=" + tel;
+				var url = ST.PATH.ACTION + "user/gainPhonePassword";
+				var tel = $.trim(t.$el.find(".js-forget-tel").val());
+				var _data = {
+					"uname": tel
+				};
 				Jser.getJSON(url, _data, function() {
 					t.showPassArea()
 				});
-			} else {
-				t.showPassArea();
 			}
 
 		},
@@ -64,7 +64,7 @@ define('', '', function(require) {
 					_data[i].value = val;
 					_locData[name] = val;
 				})
-				Jser.getJSON(ST.PATH.ACTION + "user/register", _data, function(data) {
+				Jser.getJSON(ST.PATH.ACTION + "user/updatePassword", _data, function(data) {
 					Jser.setItem("password", _locData["password"]);
 				}, function() {
 
@@ -73,16 +73,24 @@ define('', '', function(require) {
 		},
 		checkSure: function() {
 			var t = this;
-			var t1 = t.$el.find(".js-verification");
-			var t2 = t.$el.find(".js-password");
+			var t1 = t.$el.find(".js-oldpassword");
+			var t2 = t.$el.find(".js-password1");
+			var t3 = t.$el.find(".js-password2");
 			var v1 = $.trim(t1.val());
 			var v2 = $.trim(t2.val());
+			var v3 = $.trim(t3.val());
 			t.$el.find(".js-error").hide();
 			if (v1.length == 0) {
 				Jser.error(t.$el.find(".js-error"), $(t1).attr("placeholder"));
 				return false;
-			} else if (t2.length == 0) {
+			} else if (v2.length == 0) {
 				Jser.error(t.$el.find(".js-error"), $(t2).attr("placeholder"));
+				return false;
+			} else if( v3.length == 0){
+				Jser.error(t.$el.find(".js-error"), $(t3).attr("placeholder"));
+				return false;
+			}else if (v2 != v3) {
+				Jser.error(t.$el.find(".js-error"), '两次输入密码不一致');
 				return false;
 			}
 			return true;

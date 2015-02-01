@@ -4,7 +4,7 @@
 	<a href="javascript:;" class="btn-share js-share"><i class="icon"></i></a>
 </div>
 <div class="list-wrapper">	
-	<%if(data.fdata){%>
+	<%if(data.fdata&&!data.guanzhu){%>
 		<div class="list-top">
 			<img src="<%=data.fdata[0].finnerpicture%>" />
 		</div>

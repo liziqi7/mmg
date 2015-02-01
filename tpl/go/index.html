@@ -4,14 +4,134 @@
 </div>
 <div class="first-wrapper go-wrapper">
 <ul class="go-list js-go-list">
-	<li>
-		<a href="#golist/index/fid:368">
-			<p class="p1">先来试玩一下</p>
-			<p class="p2">2件商品</p>
-			<div class="go-right"><i class="icon icon-arrows-left"></i></div>
-		</a>
-		<div class="go-remove js-golist-remove">删除</div>
-	</li>
+	<%_.each(data,function(item){%>
+	<%if(item.father_id=="0"){%>
+		<li>
+			<a href="#golist/index/fid:<%=item.fid%>">
+				<%=Jser.setItem("fid"+item.fid,item.fname)%>
+				<p class="p1"><%=item.fname%></p>
+				<p class="p2"><%=item.pnum%>件商品</p>
+				<div class="go-right"><i class="icon icon-arrows-left"></i></div>
+			</a>
+			<div class="go-remove js-golist-remove" data-fid="<%=item.fid%>">删除</div>
+		</li>
+	<%}%>
+	<%})%>
+	<ul class="go-list js-go-list">
+	
+	
+	
+	
+	
+	
+		<li>
+			<a href="#golist/index/fid:868">
+				
+				<p class="p1">1111</p>
+				<p class="p2">3件商品</p>
+				<div class="go-right"><i class="icon icon-arrows-left"></i></div>
+			</a>
+			<div class="go-remove js-golist-remove" data-fid="868">删除</div>
+		</li>
+	
+	
+	
+		<li>
+			<a href="#golist/index/fid:869">
+				
+				<p class="p1">测试</p>
+				<p class="p2">0件商品</p>
+				<div class="go-right"><i class="icon icon-arrows-left"></i></div>
+			</a>
+			<div class="go-remove js-golist-remove" data-fid="869">删除</div>
+		</li>
+	
+	
+	
+		<li>
+			<a href="#golist/index/fid:870">
+				
+				<p class="p1">聊来L</p>
+				<p class="p2">0件商品</p>
+				<div class="go-right"><i class="icon icon-arrows-left"></i></div>
+			</a>
+			<div class="go-remove js-golist-remove" data-fid="870">删除</div>
+		</li>
+	
+	
+	
+		<li>
+			<a href="#golist/index/fid:871">
+				
+				<p class="p1">123123</p>
+				<p class="p2">0件商品</p>
+				<div class="go-right"><i class="icon icon-arrows-left"></i></div>
+			</a>
+			<div class="go-remove js-golist-remove" data-fid="871">删除</div>
+		</li>
+	
+	
+	
+		<li>
+			<a href="#golist/index/fid:872">
+				
+				<p class="p1">DSDFSDFS</p>
+				<p class="p2">0件商品</p>
+				<div class="go-right"><i class="icon icon-arrows-left"></i></div>
+			</a>
+			<div class="go-remove js-golist-remove" data-fid="872">删除</div>
+		</li>
+	
+	
+	
+		<li>
+			<a href="#golist/index/fid:873">
+				
+				<p class="p1">324243</p>
+				<p class="p2">0件商品</p>
+				<div class="go-right"><i class="icon icon-arrows-left"></i></div>
+			</a>
+			<div class="go-remove js-golist-remove" data-fid="873">删除</div>
+		</li>
+	
+	
+	
+		<li>
+			<a href="#golist/index/fid:874">
+				
+				<p class="p1">REERER</p>
+				<p class="p2">0件商品</p>
+				<div class="go-right"><i class="icon icon-arrows-left"></i></div>
+			</a>
+			<div class="go-remove js-golist-remove" data-fid="874">删除</div>
+		</li>
+	
+	
+	
+		<li>
+			<a href="#golist/index/fid:875">
+				
+				<p class="p1">123213213123123</p>
+				<p class="p2">0件商品</p>
+				<div class="go-right"><i class="icon icon-arrows-left"></i></div>
+			</a>
+			<div class="go-remove js-golist-remove" data-fid="875">删除</div>
+		</li>
+	
+	
+	
+		<li>
+			<a href="#golist/index/fid:876">
+				
+				<p class="p1">adasdasdasdasdsadasd</p>
+				<p class="p2">0件商品</p>
+				<div class="go-right"><i class="icon icon-arrows-left"></i></div>
+			</a>
+			<div class="go-remove js-golist-remove" data-fid="876">删除</div>
+		</li>
+	
+	
+</ul>
 </ul>
 <a href="#add/index" class="go-new js-go-new">新建go单</a>
 </div>

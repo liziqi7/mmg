@@ -42,72 +42,72 @@ define('plusin/swipe', ['$'], function(require) {
         // debugger
         function setup() {
 
-            // cache slides
-            slides = element.children;
-            length = slides.length;
-
-            // set continuous to false if only one slide
-            // 如果仅有一个幻灯片
-            if (slides.length < 2) options.continuous = false;
-
-            //special case if two slides
-            //如果有两个幻灯片
-            if (browser.transitions && options.continuous && slides.length < 3) {
-                // 克隆幻灯片  
-                element.appendChild(slides[0].cloneNode(true));
-                element.appendChild(element.children[1].cloneNode(true));
+                // cache slides
                 slides = element.children;
-            }
+                length = slides.length;
 
-            // create an array to store current positions of each slide
-            // 创建一个数组来存储每个幻灯片的当前位置
-            slidePos = new Array(slides.length);
+                // set continuous to false if only one slide
+                // 如果仅有一个幻灯片
+                if (slides.length < 2) options.continuous = false;
 
-            // determine width of each slide
-            // 确定每个幻灯片的宽度
-            width = container.getBoundingClientRect().width || container.offsetWidth;
-
-            element.style.width = (slides.length * width) + 'px';
-
-            // stack elements
-            // 初始化元素
-            var pos = slides.length;
-            // 倒序遍历
-            while (pos--) {
-
-                var slide = slides[pos];
-
-                slide.style.width = width + 'px';
-                slide.setAttribute('data-index', pos);
-
-                if (browser.transitions) {
-                    slide.style.left = (pos * -width) + 'px';
-                    move(pos, index > pos ? -width : (index < pos ? width : 0), 0);
+                //special case if two slides
+                //如果有两个幻灯片
+                if (browser.transitions && options.continuous && slides.length < 3) {
+                    // 克隆幻灯片  
+                    element.appendChild(slides[0].cloneNode(true));
+                    element.appendChild(element.children[1].cloneNode(true));
+                    slides = element.children;
                 }
 
+                // create an array to store current positions of each slide
+                // 创建一个数组来存储每个幻灯片的当前位置
+                slidePos = new Array(slides.length);
+
+                // determine width of each slide
+                // 确定每个幻灯片的宽度
+                width = container.getBoundingClientRect().width || container.offsetWidth;
+
+                element.style.width = (slides.length * width) + 'px';
+
+                // stack elements
+                // 初始化元素
+                var pos = slides.length;
+                // 倒序遍历
+                while (pos--) {
+
+                    var slide = slides[pos];
+
+                    slide.style.width = width + 'px';
+                    slide.setAttribute('data-index', pos);
+
+                    if (browser.transitions) {
+                        slide.style.left = (pos * -width) + 'px';
+                        move(pos, index > pos ? -width : (index < pos ? width : 0), 0);
+                    }
+
+                }
+
+                // reposition elements before and after index
+                // 重新定位元素之前和之后的索引
+                if (options.continuous && browser.transitions) {
+                    move(circle(index - 1), -width, 0);
+                    move(circle(index + 1), width, 0);
+                }
+                // 如果不能使用transitions方法，那么讲父级位置定义到开始滑动位置
+                if (!browser.transitions) element.style.left = (index * -width) + 'px';
+
+                // 当所有都准备好了 在把跟父级显示出来
+                container.style.visibility = 'visible';
+
             }
-
-            // reposition elements before and after index
-            // 重新定位元素之前和之后的索引
-            if (options.continuous && browser.transitions) {
-                move(circle(index - 1), -width, 0);
-                move(circle(index + 1), width, 0);
-            }
-            // 如果不能使用transitions方法，那么讲父级位置定义到开始滑动位置
-            if (!browser.transitions) element.style.left = (index * -width) + 'px';
-
-            // 当所有都准备好了 在把跟父级显示出来
-            container.style.visibility = 'visible';
-
-        }
-        // 上翻
+            // 上翻
         function prev() {
 
-            if (options.continuous) slide(index - 1);
-            else if (index) slide(index - 1);
+                if (options.continuous) slide(index - 1);
+                else if (index) slide(index - 1);
 
-        }
-        // 下翻
+            }
+            // 下翻
         function next() {
             if (options.continuous) slide(index + 1);
             else if (index < slides.length - 1) slide(index + 1);
@@ -115,65 +115,65 @@ define('plusin/swipe', ['$'], function(require) {
 
         // 返回正确的下标
         function circle(index) {
-            // 因为传过来的下标 会有负数情况 所以加入slides.length
-            // a simple positive modulo using slides.length
-            return (slides.length + (index % slides.length)) % slides.length;
+                // 因为传过来的下标 会有负数情况 所以加入slides.length
+                // a simple positive modulo using slides.length
+                return (slides.length + (index % slides.length)) % slides.length;
 
 
-        }
-        // 滑动
+            }
+            // 滑动
         function slide(to, slideSpeed) {
 
-            // do nothing if already on requested slide
-            // 防止重复滑动
-            if (index == to) return;
+                // do nothing if already on requested slide
+                // 防止重复滑动
+                if (index == to) return;
 
-            if (browser.transitions) {
-                // 方向：  1: 向后   -1 向前
-                var direction = Math.abs(index - to) / (index - to); // 1: backward, -1: forward
+                if (browser.transitions) {
+                    // 方向：  1: 向后   -1 向前
+                    var direction = Math.abs(index - to) / (index - to); // 1: backward, -1: forward
 
-                // get the actual position of the slide
-                // 如果轮播 那么计算实际的下滑目标
-                if (options.continuous) {
-                    var natural_direction = direction;
-                    direction = -slidePos[circle(to)] / width;
+                    // get the actual position of the slide
+                    // 如果轮播 那么计算实际的下滑目标
+                    if (options.continuous) {
+                        var natural_direction = direction;
+                        direction = -slidePos[circle(to)] / width;
 
-                    // if going forward but to < index, use to = slides.length + to
-                    // if going backward but to > index, use to = -slides.length + to
-                    if (direction !== natural_direction) {
-                        // debugger
-                        to = -direction * slides.length + to;
+                        // if going forward but to < index, use to = slides.length + to
+                        // if going backward but to > index, use to = -slides.length + to
+                        if (direction !== natural_direction) {
+                            // debugger
+                            to = -direction * slides.length + to;
+                        }
+
                     }
 
+                    var diff = Math.abs(index - to) - 1;
+                    // console.log("diff："+diff);
+                    // move all the slides between index and to in the right direction
+                    while (diff--) move(circle((to > index ? to : index) - diff - 1), width * direction, 0);
+
+                    to = circle(to);
+
+                    move(index, width * direction, slideSpeed || speed);
+                    move(to, 0, slideSpeed || speed);
+
+                    if (options.continuous) {
+                        // 准备好下一个幻灯片
+                        move(circle(to - direction), -(width * direction), 0); // we need to get the next in place
+                    }
+
+                } else {
+
+                    to = circle(to);
+                    animate(index * -width, to * -width, slideSpeed || speed);
+                    //no fallback for a circular continuous if the browser does not accept transitions
                 }
 
-                var diff = Math.abs(index - to) - 1;
-                // console.log("diff："+diff);
-                // move all the slides between index and to in the right direction
-                while (diff--) move(circle((to > index ? to : index) - diff - 1), width * direction, 0);
-
-                to = circle(to);
-
-                move(index, width * direction, slideSpeed || speed);
-                move(to, 0, slideSpeed || speed);
-
-                if (options.continuous) {
-                    // 准备好下一个幻灯片
-                    move(circle(to - direction), -(width * direction), 0); // we need to get the next in place
-                }
-
-            } else {
-
-                to = circle(to);
-                animate(index * -width, to * -width, slideSpeed || speed);
-                //no fallback for a circular continuous if the browser does not accept transitions
+                index = to;
+                // 将元素的下标 和 元素传入回调函数中
+                offloadFn(options.callback && options.callback(index, slides[index]));
             }
-
-            index = to;
-            // 将元素的下标 和 元素传入回调函数中
-            offloadFn(options.callback && options.callback(index, slides[index]));
-        }
-        // 位移
+            // 位移
         function move(index, dist, speed) {
 
             translate(index, dist, speed);
@@ -182,7 +182,7 @@ define('plusin/swipe', ['$'], function(require) {
         }
 
         function translate(index, dist, speed) {
-
+          
             var slide = slides[index];
             var style = slide && slide.style;
 
@@ -347,7 +347,7 @@ define('plusin/swipe', ['$'], function(require) {
 
                     // stop slideshow
                     stop();
-
+                    // console.log(delta.x + ',' + options.continuous);
                     // increase resistance if first or last slide
                     if (options.continuous) { // we don't add resistance at the end
 
@@ -360,11 +360,11 @@ define('plusin/swipe', ['$'], function(require) {
                         delta.x =
                             delta.x /
                             ((!index && delta.x > 0 // if first slide and sliding left
-                                || index == slides.length - 1 // or if last slide and sliding right
-                                && delta.x < 0 // and if sliding at all
-                            ) ?
-                            (Math.abs(delta.x) / width + 1) // determine resistance level
-                            : 1); // no resistance if false
+                                    || index == slides.length - 1 // or if last slide and sliding right
+                                    && delta.x < 0 // and if sliding at all
+                                ) ?
+                                (Math.abs(delta.x) / width + 1) // determine resistance level
+                                : 1); // no resistance if false
 
                         // translate 1:1
                         translate(index - 1, delta.x + slidePos[index - 1], 0);

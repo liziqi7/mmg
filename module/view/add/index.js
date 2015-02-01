@@ -25,9 +25,28 @@ define('', '', function(require) {
 			var t = this;
 			var val = $.trim(t.$el.find(".js-add-val").val());
 			if (val.length != 0) {
-				Jser.log("保存:" + val);
 				t.$el.find(".js-add-error").hide();
-				window.location.hash = "#go/index";
+				/*
+				fname:收藏夹名称
+				fdescribe:收藏夹描述
+				user_id：所有者用户主键
+				owner:0：未公开    1：公开
+				father_id:
+				 */
+				var _data={
+					"fname":val,
+					"user_id":Jser.getItem("user_id"),
+					"owner":0,
+					"fdescribe":0,
+					"fromflag":"myself"
+				};
+				Jser.getJSON(ST.PATH.ACTION + "favorite/favoriteAdd", _data, function(data) {
+					Jser.alert("新建go单成功",function(){
+						window.location.hash = "#go/index";
+					});
+				}, function() {
+
+				}, "post");
 			} else {
 				t.$el.find(".js-add-error").show().find("span").text("请填写go单名称");
 			}

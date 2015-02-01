@@ -25,6 +25,7 @@ define('', '', function(require) {
 				data = t.model.toJSON();
 			data.data.fdata = data.fdata;
 			data.data.fid = t.model.get("pars")["fid"];
+			data.data.guanzhu = t.model.get("pars")["guanzhu"];
 			var html = _.template(t.template, data);
 			t.$el.show().html(html);
 			var _html = _.template(list_tpl, data);
@@ -40,7 +41,7 @@ define('', '', function(require) {
 			}
 		},
 		doShare: function() {
-			var t=this;
+			var t = this;
 			var fid = t.model.get("pars")["fid"];
 			var url = ST.PATH.SHARE + "?fid=" + fid;
 			Jser.share({
@@ -52,15 +53,14 @@ define('', '', function(require) {
 		},
 		changePars: function(pars) {
 			var t = this;
-			var data = $.extend({}, t.model.get("pars"));
-			$.extend(data, pars);
-			t.model.set("pars", data);
+			t.model.set("pars", pars);
 		}
 	});
 	return function(pars) {
 		model.set({
 			pars: {
-				"fid": pars.fid
+				"fid": pars.fid,
+				"guanzhu": pars.guanzhu || 0
 			}
 		});
 		return new V({

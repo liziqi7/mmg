@@ -5,25 +5,16 @@
 </div>
 <div class="first-wrapper qdlist-wrapper">
 	<ul class="go-list js-go-list">
-	<li>
-		<p class="p1">先来试玩一下</p>
-		<p class="p2">2件商品</p>
-		<div class="qdlist-radio js-qdlist-radio" data-checked="1"><div class="qd-icon qd-icon-on"><i class="icon"></i></div></div>				
-	</li>
-	<li>
-		<p class="p1">先来试玩一下</p>
-		<p class="p2">2件商品</p>
-		<div class="qdlist-radio js-qdlist-radio" data-checked="0"><div class="qd-icon"><i class="icon"></i></div></div>				
-	</li>
-	<li>
-		<p class="p1">先来试玩一下</p>
-		<p class="p2">2件商品</p>
-		<div class="qdlist-radio js-qdlist-radio" data-checked="0"><div class="qd-icon"><i class="icon"></i></div></div>				
-	</li>
-	<li>
-		<p class="p1">先来试玩一下</p>
-		<p class="p2">2件商品</p>
-		<div class="qdlist-radio js-qdlist-radio" data-checked="0"><div class="qd-icon"><i class="icon"></i></div></div>				
-	</li>
+		<% var count=0 %>
+	<%_.each(data,function(item,i){%>
+		<%if(item.father_id=="0"){%>
+			<li>
+				<p class="p1"><%=item.fname%></p>
+				<p class="p2"><span class="js-pnum"><%=item.pnum%></span>件商品</p>
+				<div class="qdlist-radio js-qdlist-radio" data-checked="<%=(count==0?"1":"")%>"><div class="qd-icon <%=(count==0?"qd-icon-on":"")%>" data-fid="<%=item.fid%>" data-pnum="<%=item.pnum%>"><i class="icon"></i></div></div>			
+			</li>
+			<% count=1 %>
+		<%}%>
+	<%})%>
 </ul>
 </div>

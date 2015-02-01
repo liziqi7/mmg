@@ -7,7 +7,9 @@ define('', '', function(require) {
 		template: H,
 		events: {
 			"click .js-back": "goback",
-			"click .js-sign-btn": "doSign"
+			"click .js-sign-btn": "doSign",
+			"click .js-set-vcode": "doVcode"
+
 		},
 		initialize: function() {
 			var t = this;
@@ -22,7 +24,7 @@ define('', '', function(require) {
 		},
 		doSign: function() {
 			var t = this;
-			if (t.checkSign()) {				
+			if (t.checkSign()) {
 				var _data = t.$el.find("#js-sign-form").serializeArray();
 				var name, val;
 				var _locData = {};
@@ -40,6 +42,25 @@ define('', '', function(require) {
 				}, function() {
 
 				}, "post");
+			}
+		},
+		// 发送验证码到手机
+		doVcode: function() {
+			var t = this;
+			var v1 = $.trim(t.$el.find(".js-uname").val());
+			t.$el.find(".js-error").hide();
+			var reg = /^(\d{1,4}\-)?(13|15|17|18){1}\d{9}$/;
+			if (reg.test(v1)) {
+				var _data = {
+					"uname": v1
+				}
+				Jser.getJSON(ST.PATH.ACTION + "user/sendEmail", _data, function(data) {
+					Jser.alert(data.msg);
+				}, function() {
+
+				}, "post");
+			} else {
+				Jser.error(t.$el.find(".js-error"), "请输入正确的电话号码");
 			}
 		},
 		checkSign: function() {

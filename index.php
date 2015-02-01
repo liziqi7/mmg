@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0,minimal-ui">
-    <title>妈咪口袋</title>
+    <title>欢迎来到辣妈科技</title>
     <link rel="stylesheet" href="resource/css/code-index.css"/>
     <script type="text/javascript" src="module/lib/Jser.js"></script> 
     <script type="text/javascript" src="module/lib/sea.js"></script>

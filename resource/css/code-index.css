@@ -157,7 +157,7 @@ textarea{
   -ms-flex: 1;/* IE 9 */
   -webkit-flex: 1;/* Safari */
   flex: 1;
-  display: inline-block;
+  display: block;
   text-align: center;
   color: #1c78c5;
   font-size: 1em;
@@ -754,8 +754,7 @@ textarea{
   position: relative;
 }
 .slider-box{
-  min-height: 120px;
-  max-height: 180px;
+  height: 120px;
   width: 100%;
   overflow: hidden;
   margin: 0 auto;
@@ -1675,11 +1674,17 @@ input[disabled],input:disabled{
 .go-add{
   font-size:2em;
 }
+.go-list{
+  width: 100%;
+  overflow:hidden;
+}
 .go-list li{
   position: relative;
   height: 70px;
   border-bottom:1px #cccccc solid;
   padding: 0 36px 0 16px;
+  width: 100%;
+  /*overflow-x:hidden;*/
 }
 .go-list li a{
   width: 100%;
@@ -1696,6 +1701,7 @@ input[disabled],input:disabled{
   position: absolute;
   right: -100px;
   top: 0;
+  z-index: 9;
 }
 .go-list .p1{
   /*font-size: 0.875em;*/
@@ -1769,7 +1775,7 @@ input[disabled],input:disabled{
   margin-top: 180px;
 }
 .forget-wrapper .error{
-  width: 196px;
+  text-align: center;
 }
 .forget-btn{
   width: 196px;
@@ -1850,8 +1856,10 @@ input[disabled],input:disabled{
   margin:25px auto 0;
 }
 
-@media screen and (min-width: 480px){
-  
+@media screen and (min-width: 400px){
+  .slider-box{
+    height: 180px;
+  }
 }
 @media screen and (min-width: 480px){
   .slider-box2{
