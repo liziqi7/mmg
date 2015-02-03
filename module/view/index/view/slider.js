@@ -28,13 +28,13 @@ define('', '', function(require) {
 		},
 		doSlider: function() {
 			var t=this;
-			var mySwipe = Swipe(t.$el.find(".slider-box")[0], {
+			window.global_indexSwipe = Swipe(t.$el.find(".slider-box")[0], {
 				stopPropagation: true,
 				continuous: true,
 				auto: 2000,
 				speed: 800,
 				callback: function(idx) {
-					$("#js-index-sliderIdx li").removeClass().eq(idx % mySwipe.getNumSlides()).addClass("on");
+					$("#js-index-sliderIdx li").removeClass().eq(idx % global_indexSwipe.getNumSlides()).addClass("on");
 				}
 			});
 		}

@@ -56,13 +56,22 @@ define('', '', function(require) {
 			t.model.set("pars", pars);
 		}
 	});
+	
 	return function(pars) {
-		model.set({
-			pars: {
-				"fid": pars.fid,
-				"guanzhu": pars.guanzhu || 0
-			}
-		});
+		if (pars.guanzhu) {
+			model.set({
+				pars: {
+					"fid": pars.fid,
+					"guanzhu": pars.guanzhu
+				}
+			});
+		} else if (pars.fid) {
+			model.set({
+				pars: {
+					"fid": pars.fid
+				}
+			});
+		}
 		return new V({
 			el: $("#" + pars.model + "_" + pars.action)
 		});

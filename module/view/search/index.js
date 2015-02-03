@@ -7,8 +7,8 @@ define('', '', function(require) {
 
 	var model = new M({
 		type: "post",
-		isload:"false",
-		action:  'product/productListForPname'
+		isload: "false",
+		action: 'product/productListForPname'
 	});
 	var indexSelf;
 	var V = B.View.extend({
@@ -107,8 +107,10 @@ define('', '', function(require) {
 			var val = $.trim(t.$el.find(".js-search-val").val());
 			if (val) {
 				t.changePars({
-					"search_pname": val
+					"search_pname": val,
+					"pageNo": 1
 				});
+				t.$el.find(".js-list-area").html('');
 			}
 		},
 		changePars: function(pars) {
@@ -119,6 +121,7 @@ define('', '', function(require) {
 		}
 	});
 	return function(pars) {
+
 		return new V({
 			el: $("#" + pars.model + "_" + pars.action)
 		});

@@ -72,7 +72,7 @@ define('', '', function(require) {
 			Jser.loadimages();
 		},
 		bindEvent: function() {
-			var t = this;			
+			var t = this;
 			var $li = t.$el.find(".js-tab li");
 			var $hlli = t.$el.find(".js-tab-highlight li");
 			var $content = t.$el.find(".js-tab-content")
@@ -111,15 +111,15 @@ define('', '', function(require) {
 				window.location.href = "#";
 			}
 		},
-		doShare: function() {
+		doShare: function(e) {
 			var t = this;
-			var fid = t.model.get("pars")["pid"];
-			var url = ST.PATH.SHARE + "?fid=" + fid;
+			var $elem = $(e.currentTarget);
+			// alert($elem.attr("data-share"));
 			Jser.share({
-				imgUrl: "",
-				lineLink: url,
-				shareTitle: "妈咪口袋:" + Jser.getItem("fid" + fid),
-				descContent: ""
+				imgUrl: $elem.attr("data-imgUrl"),
+				lineLink: $elem.attr("data-share"),
+				shareTitle: $elem.attr("data-shareTitle"),
+				descContent: $elem.attr("data-descContent")
 			});
 		},
 		doPraise: function(e) {
@@ -131,9 +131,11 @@ define('', '', function(require) {
 				"pid": pid,
 				"user_id": Jser.getItem("user_id")
 			}
+			var type = "post";
 			var url = ST.PATH.ACTION;
 			if (isGood == "yes") {
 				url += "product/productDeleteGood";
+				type = "get";
 			} else {
 				url += "product/productAddGood"
 			}
@@ -153,7 +155,7 @@ define('', '', function(require) {
 			}, function(data) {
 				if (data && data.msg)
 					Jser.alert(data.msg);
-			}, "post");
+			}, type);
 		},
 		changePars: function(pars) {
 			var t = this;

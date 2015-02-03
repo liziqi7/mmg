@@ -28,11 +28,19 @@ define(function(require, exports) {
             } else {
                 this.$el.hide();
             }
-            if (m.indexOf("list") != -1) {
+            if ((m != "qdlist" && m.indexOf("list") != -1) || m == "search") {
                 $('body').addClass("bg1");
             } else {
                 $('body').removeClass("bg1");
             }
+            if (window.global_indexSwipe) {
+                if (m == "index") {
+                    global_indexSwipe.play();
+                } else {
+                    global_indexSwipe.pause();
+                }
+            }
+
         },
 
         bindEvent: function() {

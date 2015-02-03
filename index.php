@@ -41,7 +41,7 @@
                 </a>
             </li>
             <li>
-                <a href="#qingdan/index"><i class="nav-icon icon-qingdan"></i><span class="nav-txt">清单</span></a>
+                <a href="#qingdan/index/idx:1"><i class="nav-icon icon-qingdan"></i><span class="nav-txt">清单</span></a>
             </li>
             <li>
                 <a href="#go/index"><i class="nav-icon icon-go"></i><span class="nav-txt">go</span></a>
@@ -62,7 +62,7 @@
         <div id="js-pop-tpl">
             <div class="pop">
                 <div class="pop-inner">
-                    <div class="pop-msg js-pop-txt">这个是测试的</div>
+                    <div class="pop-msg js-pop-txt"></div>
                     <div class="pop-btn-box flex-equal">
                         <a href="javascript:;" class="js-close" data-uid="123456">好</a>
                     </div>

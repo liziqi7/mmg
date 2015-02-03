@@ -1,6 +1,6 @@
 var global_origin = window.location.origin || (window.location.protocol + '//' + window.location.hostname);
 var WeiXinShare = {
-  imgUrl: global_origin + "/image/icon.png", //注意必须是绝对路径
+  imgUrl: "http://www.lamakeji.com/resource/images/iconlogo.png", //注意必须是绝对路径
   lineLink: global_origin + "/", //同样，必须是绝对路径  
   shareTitle: document.title, //分享title
   descContent: document.title, //分享给朋友或朋友圈时的文字简介

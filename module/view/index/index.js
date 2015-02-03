@@ -69,8 +69,30 @@ define('', '', function(require) {
 			if (on) {
 				Jser.alert("已收藏过");
 			} else {
-				Jser.alert("收藏成功");
-				$elem.attr("data-on","1");
+				/*
+				fname:收藏夹名称
+				fdescribe:收藏夹描述
+				user_id：所有者用户主键
+				owner:0：未公开    1：公开
+				father_id:
+				 */
+				var _data = {
+					"fname": $elem.attr("data-fname"),
+					"user_id": Jser.getItem("user_id"),
+					"fdescribe":$elem.attr("data-fdescribe"),
+					"owner": 1,
+					"father_id":$elem.attr("data-fid"),
+					"fromflag": "share"
+				};
+				var url = "favorite/favoriteAdd";
+				Jser.getJSON(ST.PATH.ACTION + url, _data, function(data) {
+					Jser.alert("收藏成功");
+				}, function() {
+
+				}, "post");
+
+				$elem.attr("data-on", "1");
+
 			}
 			return false;
 		},

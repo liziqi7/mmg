@@ -10,8 +10,10 @@
 </div>
 <div class="index-wrapper">
 	<ul class="index-list">
+		<%var count=0 %>
 		<%_.each(data,function(item){%>
 			<%if(item.father_id!="0"){%>
+				<% count++ %>
 				<%=Jser.setItem("fid"+item.fid,item.fname)%>
 				<li>
 					<a href="#list/index/fid:<%=item.fid%>/guanzhu:1">
@@ -20,5 +22,8 @@
 				</li>	
 			<%}%>
 		<%})%>
+		<%if(!count){%>
+		<div style="margin-top:100px;text-align:center;">您还没有收藏过任何商品哦</div>
+		<%}%>
 	</ul>
 </div>

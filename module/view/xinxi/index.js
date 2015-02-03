@@ -6,7 +6,9 @@ define('', '', function(require) {
 	var V = B.View.extend({
 		template: H,
 		events: {
-			"click .js-back": "goback"
+			"click .js-back": "goback",
+			"click .js-sure": "doSure"
+
 		},
 		initialize: function() {
 			var t = this;
@@ -19,6 +21,9 @@ define('', '', function(require) {
 				data = {};
 			var html = _.template(t.template, data);
 			t.$el.show().html(html);
+			if (!!Jser.os.ios) {
+				t.$el.find(".js-iphone-date").show();
+			}
 		},
 		bindEvent: function() {
 			var t = this;
@@ -30,7 +35,8 @@ define('', '', function(require) {
 						$(this).removeClass("on");
 					}
 				});
-				$(this).toggleClass("on");
+				$(this).addClass("on");
+				Jser.setItem("xinxistatus", index);
 			});
 			var $ligender = t.$el.find(".js-xinxi-gender li");
 			$ligender.on("mousedown", function() {
@@ -40,8 +46,20 @@ define('', '', function(require) {
 						$(this).removeClass("on");
 					}
 				});
-				$(this).toggleClass("on");
+				$(this).addClass("on");
+				Jser.setItem("xinxigender", index);
 			});
+			t.$el.find(".js-xinxi-date").on("blur", function() {
+				Jser.setItem("xinxidate", this.value);
+			});
+			t.$el.find(".js-iphone-date").on("blur", function() {
+				Jser.setItem("xinxidate", this.value);
+				t.$el.find(".js-xinxi-date").val(this.value);
+			});
+		},
+		doSure: function() {
+			var t = this;
+			t.goback();
 		},
 		goback: function() {
 			var t = this;

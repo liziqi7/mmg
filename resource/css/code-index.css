@@ -187,6 +187,7 @@ textarea{
   color:#40a8cc;
   font-size:0.875em;
   display: none;
+  background-color: #fff;
 }
 .loading-icon{
   display: inline-block;
@@ -276,6 +277,7 @@ textarea{
 .nav li{  
   text-align: center;  
   height: 50px;
+  overflow: hidden;
 }
 .nav li a{
   display: block;
@@ -680,11 +682,19 @@ textarea{
   border:1px solid #959595;
   border-radius: 3px;
   padding: 4px 5px;
+  position: relative;
 }
 .xinxi-ipt-txt input{
   width: 100%;
   height: 20px;
   display: block;
+}
+.xinxi-ipt-txt .iphone-date{
+  display: none;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .xinxi-gender{
   width: 150px;
@@ -697,12 +707,25 @@ textarea{
   cursor: pointer;
   width: 57px;
   height: 59px;
+  position: relative;
 }
 .xinxi-gender li:nth-child(1){
    background:url(../images/info4.png) 0 0 no-repeat; 
 }
 .xinxi-gender li:nth-child(2){
    background:url(../images/info5.png) 0 0 no-repeat; 
+}
+.xinxi-gender .gender-checked{
+  width: 16px;
+  height: 13px;
+  background:url(../images/checked.png) 0 0 no-repeat; 
+  position: absolute;
+  top:36px;
+  left:36px;
+  display: none;
+}
+.xinxi-gender li.on .gender-checked{
+    display: block;
 }
 .xinxi-gender li.on .xinxi-radio{
   border: 2px solid #959595;
@@ -719,7 +742,7 @@ textarea{
   text-align: center;
   background-color: #fff;
   border-radius: 2px;
-  position: relative;
+  position: absolute;
   top:31px;
   left:17px;
 }
@@ -813,7 +836,7 @@ textarea{
 }
 .slider-point li.on{
   background-color: #EB928A;
-  box-shadow: 1px 1px 2px #DCDCDC;  
+  /*box-shadow: 1px 1px 2px #DCDCDC;  */
 }
 .slider-suggest{
   position: absolute;
@@ -915,17 +938,17 @@ textarea{
 .hd-dropdown{
   position: absolute;
   width: 30px;
-  height: 44px;
-  left: 0;
-  top: 0;
+  height: 22px;
+  left: 0px;
+  top: 10px;
   opacity: 0;
 }
 .hd-dropdown2{
   position: absolute;
   width: 50px;
-  height: 44px;
+  height: 26px;
   right: 0;
-  top: 0;
+  top: 10px;
   opacity: 0;
   z-index: 2;
 }
@@ -1051,15 +1074,16 @@ textarea{
     border-right: 4px solid transparent;
 }
 .qd-pitch div{
-  border: 1px #bdd1fb solid;
-  background-color: #d1e7ff;
+  border: 1px #7ca5ff solid;
+  background-color: #7ca5ff;
   color: #fff;
   text-align: center;
   width: 100%;
   height: 100%;
   border-radius: 50%;
   padding-top:5px;
-  font-size: 0.875em;
+  font-size: 0.7em;
+  overflow: hidden;
 }
 .qingdan-line{
   width: 100%;

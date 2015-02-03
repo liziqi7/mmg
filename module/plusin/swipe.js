@@ -39,12 +39,12 @@ define('plusin/swipe', ['$'], function(require) {
         var index = parseInt(options.startSlide, 10) || 0; // 滑动索引值
         var speed = options.speed || 300; // 滑动速度
         options.continuous = options.continuous !== undefined ? options.continuous : true; //是否循环滑动
+        length = element.children.length;
         // debugger
         function setup() {
 
                 // cache slides
                 slides = element.children;
-                length = slides.length;
 
                 // set continuous to false if only one slide
                 // 如果仅有一个幻灯片
@@ -53,7 +53,7 @@ define('plusin/swipe', ['$'], function(require) {
                 //special case if two slides
                 //如果有两个幻灯片
                 if (browser.transitions && options.continuous && slides.length < 3) {
-                    // 克隆幻灯片  
+                    // 克隆幻灯片
                     element.appendChild(slides[0].cloneNode(true));
                     element.appendChild(element.children[1].cloneNode(true));
                     slides = element.children;
@@ -182,7 +182,7 @@ define('plusin/swipe', ['$'], function(require) {
         }
 
         function translate(index, dist, speed) {
-          
+
             var slide = slides[index];
             var style = slide && slide.style;
 
@@ -238,22 +238,32 @@ define('plusin/swipe', ['$'], function(require) {
 
         // setup auto slideshow
         var delay = options.auto || 0;
-        var interval;
+        var interval, isEnablePause = false;
 
         function begin() {
-
-            interval = setTimeout(next, delay);
-
+            if (!isEnablePause) {
+                stop();
+                interval = setTimeout(next, delay);
+            }
         }
 
         function stop() {
-
             // delay = 0;
-            clearTimeout(interval);
-            interval = null;
-
+            if (interval) {
+                clearTimeout(interval);
+                interval = null;
+            }
         }
 
+        function play() {
+                isEnablePause = false;
+                begin();
+            }
+            // 暂停
+        function pause() {
+            stop();
+            isEnablePause = true;
+        }
 
         // setup initial vars
         var start = {};
@@ -347,7 +357,7 @@ define('plusin/swipe', ['$'], function(require) {
 
                     // stop slideshow
                     stop();
-                    // console.log(delta.x + ',' + options.continuous);
+
                     // increase resistance if first or last slide
                     if (options.continuous) { // we don't add resistance at the end
 
@@ -475,7 +485,7 @@ define('plusin/swipe', ['$'], function(require) {
         setup();
 
         // start auto slideshow if applicable
-        if (delay) begin();
+        if (delay) begin(); // setTimeout(next, delay/2); 
 
 
         // add event listeners
@@ -534,12 +544,21 @@ define('plusin/swipe', ['$'], function(require) {
                 next();
 
             },
+            // 播放
+            play: function() {
+                play();
+            },
+            // 暂停
+            pause: function() {
+                pause();
+            },
             stop: function() {
 
                 // cancel slideshow
                 stop();
 
             },
+
             getPos: function() {
 
                 // return current index position

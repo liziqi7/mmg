@@ -1,16 +1,16 @@
 define('', '', function(require) {
 	var B = require('backbone');
 	var M = require('base/model');
-	var H = require('text!../../../tpl/guanzhu/danpin.html');
-	var list_tpl = require('text!../../../tpl/guanzhu/view/list.html');
+	var H = require('text!../../../tpl/list2/index.html');
+	var list_tpl = require('text!../../../tpl/list2/view/list.html');
 	var model = new M({
-		action: 'product/productListMyGoodByUid',
-		type: "post"
+		action: 'product/productListByPtid'
 	});
 	var V = B.View.extend({
 		model: model,
 		template: H,
 		events: {
+			"click .js-back": "goback",
 			"click .js-share": "doShare",
 		},
 		initialize: function() {
@@ -23,23 +23,20 @@ define('', '', function(require) {
 		render: function() {
 			var t = this,
 				data = t.model.toJSON();
-			data.data.fdata = data.fdata;
-			data.data.fid = t.model.get("pars")["fid"];
+			data.data.ptid = t.model.get("pars")["ptid"];
 			var html = _.template(t.template, data);
 			t.$el.show().html(html);
-			if (data.length != 0) {
-				var _html = _.template(list_tpl, data);
-				t.$el.find(".js-list-area").append(_html);
-				Jser.loadimages(t.$el.find(".js-list-area"));
+			var _html = _.template(list_tpl, data);
+			t.$el.find(".js-list-area").append(_html);
+			Jser.loadimages(t.$el.find(".js-list-area"));
+		},
+		goback: function() {
+			var t = this;
+			if (window.history && window.history.length > 2) {
+				window.history.back();
+			} else {
+				window.location.href = "#";
 			}
-			t.$el.find(".js-guanzhu-dropdown").change(function() {
-				var txt = $(this).find("option:selected").text();
-				if (txt == "合集") {
-					window.location.hash = "#guanzhu/index";
-				} else if (txt == "单品") {
-					window.location.hash = "#guanzhu/danpin";
-				}
-			});
 		},
 		doShare: function() {
 			var t = this;
@@ -54,15 +51,14 @@ define('', '', function(require) {
 		},
 		changePars: function(pars) {
 			var t = this;
-			var data = $.extend({}, t.model.get("pars"));
-			$.extend(data, pars);
-			t.model.set("pars", data);
+			t.model.set("pars", pars);
 		}
 	});
+
 	return function(pars) {
 		model.set({
 			pars: {
-				"user_id": Jser.getItem("user_id")
+				"ptid": pars.ptid
 			}
 		});
 		return new V({

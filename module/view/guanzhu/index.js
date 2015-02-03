@@ -33,7 +33,15 @@ define('', '', function(require) {
 			t.bindEvent();
 		},
 		bindEvent: function() {
-
+			var t = this;
+			t.$el.find(".js-guanzhu-dropdown").change(function() {
+				var txt = $(this).find("option:selected").text();
+				if (txt == "合集") {
+					window.location.hash = "#guanzhu/index";
+				} else if (txt == "单品") {
+					window.location.hash = "#guanzhu/danpin";
+				}
+			});
 		},
 		changePars: function(pars) {
 			var t = this;
