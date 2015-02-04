@@ -37,7 +37,7 @@
 				<p class="p2">￥<%=data.price%>·<%=data.place%>·<%=data.buytime%></p>
 			</td>
 			<td class="shangpin-right">
-				<a href="<%=data.html_url%>" class="buy" target="_blank"><div class="icon-buy-box"><i class="icon icon-buy"></i></div></a>
+				<a href="<%=data.html_url%>" class="buy" target="_blank">立即购买</a>
 			</td>
 		</tr>
 	</table>
@@ -69,7 +69,6 @@
 			<li><a href="#comment/index/pid:<%=data.pid%>"><i class="icon icon-comment"></i></a></li>
 			<li><a href="javascript:;" class="js-praise" data-isgood="<%=data.isgood%>"><i class="icon icon-heart<%=data.isgood!="no"?" icon-heart-on":""%>"></i></a></li>
 			<li><a href="#qdlist/index/pid:<%=data.pid%>"><i class="icon icon-all-comment"></i></a></li>
-			<li><a href="<%=data.html_url%>" target="_blank"><i class="icon icon-buy"></i></a></li>
 		</ul>
 		<div class="shangpin-content js-tab-content">
 			<p class="p-title">[<%=data.buytime%>]</p>

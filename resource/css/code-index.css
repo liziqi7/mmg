@@ -1318,6 +1318,10 @@ textarea{
   border-left:1px #D3D3D3 solid;
   overflow: hidden;
   display: block;
+  color:#7da5ff;
+  font-size:0.75em;
+  line-height: 33px;
+  text-align: center;
 }
 .icon-buy-box{
   width: 20px;
@@ -1428,9 +1432,6 @@ textarea{
 .shangpin-tab-highlight li.on div{ 
   background-color: #EB938B;  
 }
-.shangpin-comment-box{
-  position: relative;
-}
 .shangpin-comment{
 
 }
@@ -1444,11 +1445,11 @@ textarea{
   display: inline-block;
 }
 .shangpin-comment-box .comment-btn-box{
-  width: 200px;  
+  width: 150px;  
   height: 25px;
-  position: absolute;
+  position: fixed;
   right: 0;
-  top: 0;
+  top: 454px;
 }
 .shangpin-comment-box .comment-btn-box li{
   width:50px;
