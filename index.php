@@ -95,5 +95,8 @@
     }
     </script>
 </body>
+<!-- <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script> -->
 <script type="text/javascript" src="resource/js/weixinshare.js"></script>
+<!-- <script type="text/javascript" src="resource/js/jweixin-1.0.0.js"></script> -->
+
 </html>

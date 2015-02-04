@@ -43,12 +43,13 @@ define('', '', function(require) {
 		doShare: function() {
 			var t = this;
 			var fid = t.model.get("pars")["fid"];
-			var url = ST.PATH.SHARE + "?fid=" + fid;
+			var shareTitle = Jser.getItem("fid" + fid);
+			var descContent = Jser.getItem("fdescribe" + fid) || "辣妈科技";
+			var url = 'http://www.lamakeji.com/mamago/index.php/weixin/productShare?fid=' + fid + '&shareUserId=' + Jser.getItem("user_id") + '&tpid=4&topic=' + shareTitle + '&ftitle=' + descContent + '&from=singlemessage&isappinstalled=1';
 			Jser.share({
-				imgUrl: "",
 				lineLink: url,
-				shareTitle: "妈咪口袋" + Jser.getItem("fid" + fid),
-				descContent: ""
+				shareTitle: shareTitle,
+				descContent: descContent
 			});
 		},
 		changePars: function(pars) {
@@ -56,7 +57,7 @@ define('', '', function(require) {
 			t.model.set("pars", pars);
 		}
 	});
-	
+
 	return function(pars) {
 		if (pars.guanzhu) {
 			model.set({

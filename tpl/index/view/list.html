@@ -1,5 +1,6 @@
 <%_.each(data,function(item){%>
 <%item.fid&&Jser.setItem("fid"+item.fid,item.fname)%>
+<%item.fid&&Jser.setItem("fdescribe"+item.fid,item.fdescribe)%>
 <li>
 	<a href="#list/index/fid:<%=item.fid%>"  data-fname="<%=item.fname%>" data-fdescribe="<%=item.fdescribe%>">
 		<i class="mark-icon-on icon js-mark" data-fid="<%=item.fid%>" data-fdescribe="<%=item.fdescribe%>" data-fname="<%=item.fname%>"  data-on="<%=item.user_id==localStorage.user_id?"1":"0"%>"></i>
