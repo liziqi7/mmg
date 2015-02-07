@@ -784,7 +784,7 @@ textarea{
   position: relative;
 }
 .slider-box2{
-  width: 320px;
+  width:100%;
   height: 320px;
 }
 .slider-list{
@@ -1233,7 +1233,7 @@ textarea{
 }
 .list-top{
   height: 120px;
-  width: 320px;
+  width: 100%;
   margin:0 auto;
   overflow: hidden;
   position: relative;
@@ -1256,12 +1256,12 @@ textarea{
   width: 100%;
 }
 .list-area{
-  width: 300px;
+  width: 94%;
   margin: 0 auto;
   padding-bottom: 10px; 
 }
 .list-area li{
-  width: 140px;
+  width: 46%;
   height: 196px;
   margin:10px 5px 0;
   float: left;  
@@ -1885,6 +1885,15 @@ input[disabled],input:disabled{
   .slider-box{
     height: 180px;
   }
+  .slider-box2{
+    height: 320px;
+  }
+  .list-area li{
+    width: 47%;
+  }
+  .list-top{
+    height: 150px;
+  }
 }
 @media screen and (min-width: 480px){
   .slider-box2{
@@ -1900,8 +1909,15 @@ input[disabled],input:disabled{
   body{
     /*font-size:24px;*/
   }
-  .list-area{
-    width: 600px; 
+  .list-top{
+    height: 288px;
+  }
+  .list-area li{
+    width:48%;
+    height: 400px;
+  }
+  .list-area li img{
+    height: 300px;
   }
   .share{
     width: 640px;
