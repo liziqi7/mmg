@@ -6,6 +6,8 @@
     <title>欢迎来到辣妈科技</title>
     <link rel="stylesheet" href="resource/css/code-index.css"/>
     <script type="text/javascript" src="module/lib/Jser.js"></script> 
+    <script type="text/javascript" src="resource/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="resource/js/weixinshare.js"></script>
     <script type="text/javascript" src="module/lib/sea.js"></script>
     <script type="text/javascript" src="module/lib/seajs-text.js"></script>
     <script type="text/javascript">
@@ -70,11 +72,11 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="resource/js/jweixin-1.0.0.js"></script>
-    <script type="text/javascript" src="resource/js/weixinshare.js"></script>
+    
     <script  type="text/javascript">   
     seajs.use('app.js', function(app) {
         app.run();
+         // loadlogin();
         loadwxconfig();
     });
     function hideLoad() {
@@ -96,6 +98,18 @@
         var d = dd.getDate();
         return y + "-" + m + "-" + d;
     }
+    function loadlogin(){
+        // location.href="http://www.lamakeji.com/mamago/index.php/weixin/getAuth";
+        
+        Jser.getJSON("http://www.lamakeji.com/mamago/index.php/weixin/authCallback?code=0210e8c12bbb6e2016c8c2d694ae708S&state=123","", function(data) {
+            // setwxconfig(data);
+            alert(JSON.stringify(data))
+        }, function(data) {
+            alert(JSON.stringify(data))
+            // setwxconfig(data);
+        }, "get", "json", true)
+    }
+   
     // 获取微信基本信息
     function loadwxconfig() {
         //http://www.lamakeji.com/mamago/index.php/weixin/getAuth
@@ -103,18 +117,17 @@
             setwxconfig(data);
             // alert(JSON.stringify(data))
         }, function(data) {
-            alert(JSON.stringify(data))
+            // alert(JSON.stringify(data))
             setwxconfig(data);
         }, "get", "json", true)
     };
     
     function setwxconfig(data){
         if (window.wx) {
-                wx.config(data);
-
+                // wx.config(data);
                 wx.config({
-                 debug: false,
-                 // appId: data.appId,
+                 debug: true,
+                 appId: data.share.appId||"",
                  timestamp: data.share.timestamp,
                  nonceStr: data.share.nonceStr,
                  signature: data.signature,
@@ -127,13 +140,11 @@
                  ]
                 });
                 weixin6();
-                // alert(wx.error)
-                wx.error(function(res) {
-                   loadwxconfig();
-                });
+                // wx.error(function(res) {
+                //    loadwxconfig();
+                // });
             }
     }
-   
     </script>
 </body>
 

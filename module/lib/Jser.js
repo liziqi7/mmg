@@ -240,7 +240,9 @@ window.Jser = {
         if (!$.isEmptyObject(params)) {
             $.extend(WeiXinShare, params);
         }
-        weixin6bySet();
+        if (window.wx) {
+            weixin6bySet();
+        }
         this.showShare();
     },
     showShare: function() {
