@@ -70,9 +70,12 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="resource/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="resource/js/weixinshare.js"></script>
     <script  type="text/javascript">   
     seajs.use('app.js', function(app) {
         app.run();
+        loadwxconfig();
     });
     function hideLoad() {
         setTimeout(function() {
@@ -93,10 +96,45 @@
         var d = dd.getDate();
         return y + "-" + m + "-" + d;
     }
+    // 获取微信基本信息
+    function loadwxconfig() {
+        //http://www.lamakeji.com/mamago/index.php/weixin/getAuth
+        Jser.getJSON("http://www.lamakeji.com/mamago/index.php/weixin/getShareSign","", function(data) {
+            setwxconfig(data);
+            // alert(JSON.stringify(data))
+        }, function(data) {
+            alert(JSON.stringify(data))
+            setwxconfig(data);
+        }, "get", "json", true)
+    };
+    
+    function setwxconfig(data){
+        if (window.wx) {
+                wx.config(data);
+
+                wx.config({
+                 debug: false,
+                 // appId: data.appId,
+                 timestamp: data.share.timestamp,
+                 nonceStr: data.share.nonceStr,
+                 signature: data.signature,
+                 jsApiList: [
+                     'onMenuShareTimeline',
+                     'onMenuShareAppMessage'
+                     // 'onMenuShareQQ',
+                     // 'onMenuShareWeibo',
+                     // 'getNetworkType'
+                 ]
+                });
+                weixin6();
+                // alert(wx.error)
+                wx.error(function(res) {
+                   loadwxconfig();
+                });
+            }
+    }
+   
     </script>
 </body>
-<!-- <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script> -->
-<script type="text/javascript" src="resource/js/weixinshare.js"></script>
-<!-- <script type="text/javascript" src="resource/js/jweixin-1.0.0.js"></script> -->
 
 </html>
