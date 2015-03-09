@@ -70,6 +70,7 @@ define('', '', function(require) {
 
 			t.bindEvent();
 			Jser.loadimages();
+			t.setShare();
 		},
 		bindEvent: function() {
 			var t = this;
@@ -111,16 +112,19 @@ define('', '', function(require) {
 				window.location.href = "#";
 			}
 		},
-		doShare: function(e) {
+		setShare: function() {
 			var t = this;
-			var $elem = $(e.currentTarget);
+			var $elem = t.$el.find(".js-share");
 			// alert($elem.attr("data-share"));
-			Jser.share({
+			Jser.setshare({
 				imgUrl: $elem.attr("data-imgUrl"),
 				lineLink: $elem.attr("data-share"),
 				shareTitle: $elem.attr("data-shareTitle"),
 				descContent: $elem.attr("data-descContent")
 			});
+		},
+		doShare: function() {
+			Jser.share();
 		},
 		doPraise: function(e) {
 			var $elem = $(e.currentTarget);

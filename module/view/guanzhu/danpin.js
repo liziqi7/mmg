@@ -40,17 +40,21 @@ define('', '', function(require) {
 					window.location.hash = "#guanzhu/danpin";
 				}
 			});
+			t.setShare();
 		},
-		doShare: function() {
+		setShare: function() {
 			var t = this;
 			var fid = t.model.get("pars")["fid"];
 			var url = ST.PATH.SHARE + "?fid=" + fid;
-			Jser.share({
+			Jser.setshare({
 				imgUrl: "",
 				lineLink: url,
 				shareTitle: "妈咪口袋" + Jser.getItem("fid" + fid),
 				descContent: ""
 			});
+		},
+		doShare: function() {
+			Jser.share();
 		},
 		changePars: function(pars) {
 			var t = this;

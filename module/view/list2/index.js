@@ -29,6 +29,7 @@ define('', '', function(require) {
 			var _html = _.template(list_tpl, data);
 			t.$el.find(".js-list-area").append(_html);
 			Jser.loadimages(t.$el.find(".js-list-area"));
+			t.setShare();
 		},
 		goback: function() {
 			var t = this;
@@ -38,16 +39,19 @@ define('', '', function(require) {
 				window.location.href = "#";
 			}
 		},
-		doShare: function() {
+		setShare: function() {
 			var t = this;
 			var fid = t.model.get("pars")["fid"];
 			var url = ST.PATH.SHARE + "?fid=" + fid;
-			Jser.share({
+			Jser.setshare({
 				imgUrl: "",
 				lineLink: url,
 				shareTitle: "妈咪口袋" + Jser.getItem("fid" + fid),
 				descContent: ""
 			});
+		},
+		doShare: function() {
+			Jser.share();
 		},
 		changePars: function(pars) {
 			var t = this;

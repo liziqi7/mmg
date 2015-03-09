@@ -32,6 +32,7 @@ define('', '', function(require) {
 				t.$el.find(".js-list-area").append(_html);
 				Jser.loadimages(t.$el.find(".js-list-area"));
 			}
+			t.setShare();
 		},
 		goback: function() {
 			var t = this;
@@ -41,16 +42,22 @@ define('', '', function(require) {
 				window.location.href = "#";
 			}
 		},
-		doShare: function() {
+		setShare: function() {
 			var t = this;
 			var fid = t.model.get("pars")["fid"];
-			var url = ST.PATH.SHARE + "?fid=" + fid;
-			Jser.share({
+			// var url = ST.PATH.SHARE + "?fid=" + fid;
+			var shareTitle = "妈咪口袋go单" + Jser.getItem("fid" + fid);
+			var descContent = "妈咪口袋";
+			var url = 'http://www.lamakeji.com/mamago/index.php/weixin/productShare?fid=' + fid + '&shareUserId=' + Jser.getItem("user_id") + '&tpid=4&topic=' + shareTitle + '&ftitle=' + descContent + '&from=singlemessage&isappinstalled=1';
+			Jser.setshare({
 				imgUrl: "",
 				lineLink: url,
-				shareTitle: "妈咪口袋" + Jser.getItem("fid" + fid),
-				descContent: ""
+				shareTitle: shareTitle, //"妈咪口袋" + Jser.getItem("fid" + fid),
+				descContent: descContent,
 			});
+		},
+		doShare: function() {
+			Jser.share();
 		},
 		changePars: function(pars) {
 			var t = this;

@@ -126,11 +126,11 @@
         if (window.wx) {
                 // wx.config(data);
                 wx.config({
-                 debug: true,
-                 appId: data.share.appId||"",
+                 debug: false,
+                 appId: data.share.app_id,
                  timestamp: data.share.timestamp,
-                 nonceStr: data.share.nonceStr,
-                 signature: data.signature,
+                 nonceStr: data.share.noncestr,
+                 signature: data.share.sign,
                  jsApiList: [
                      'onMenuShareTimeline',
                      'onMenuShareAppMessage'

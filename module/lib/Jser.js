@@ -236,13 +236,20 @@ window.Jser = {
         callback && callback($pop);
         return uid;
     },
-    share: function(params) {
+    setshare: function(params) {
         if (!$.isEmptyObject(params)) {
             $.extend(WeiXinShare, params);
         }
+        // alert(JSON.stringify(params))
         if (window.wx) {
             weixin6bySet();
         }
+    },
+    share: function(params) {
+        if (params) {
+            this.setshare(params);
+        }
+
         this.showShare();
     },
     showShare: function() {
