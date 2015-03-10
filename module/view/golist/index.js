@@ -46,7 +46,7 @@ define('', '', function(require) {
 			var t = this;
 			var fid = t.model.get("pars")["fid"];
 			// var url = ST.PATH.SHARE + "?fid=" + fid;
-			var shareTitle = "妈咪口袋go单" + Jser.getItem("fid" + fid);
+			var shareTitle = Jser.getItem("fid" + fid)+"－妈咪手袋";
 			var descContent = "妈咪口袋";
 			var url = 'http://www.lamakeji.com/mamago/index.php/weixin/productShare?fid=' + fid + '&shareUserId=' + Jser.getItem("user_id") + '&tpid=4&topic=' + shareTitle + '&ftitle=' + descContent + '&from=singlemessage&isappinstalled=1';
 			Jser.setshare({
