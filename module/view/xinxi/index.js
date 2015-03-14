@@ -10,6 +10,8 @@ define('', '', function(require) {
 			"click .js-sure": "doSure"
 
 		},
+		xinxistatusindex: 0,
+		xinxigenderindex: "",
 		initialize: function() {
 			var t = this;
 			t.render();
@@ -36,7 +38,7 @@ define('', '', function(require) {
 					}
 				});
 				$(this).addClass("on");
-				Jser.setItem("xinxistatus", index);
+				t.xinxistatusindex = index;
 			});
 			var $ligender = t.$el.find(".js-xinxi-gender li");
 			$ligender.on("mousedown", function() {
@@ -47,18 +49,27 @@ define('', '', function(require) {
 					}
 				});
 				$(this).addClass("on");
-				Jser.setItem("xinxigender", index);
-			});
-			t.$el.find(".js-xinxi-date").on("blur", function() {
-				Jser.setItem("xinxidate", this.value);
+				t.xinxigenderindex = index;
 			});
 			t.$el.find(".js-iphone-date").on("blur", function() {
-				Jser.setItem("xinxidate", this.value);
 				t.$el.find(".js-xinxi-date").val(this.value);
 			});
 		},
 		doSure: function() {
 			var t = this;
+			Jser.setItem("xinxistatus", t.xinxistatusindex);
+			Jser.setItem("xinxigender", t.xinxigenderindex);
+			Jser.setItem("xinxidate", t.$el.find(".js-xinxi-date").val());
+			// 备孕
+			if(t.xinxistatusindex==0||t.xinxistatusindex==""){
+				$("#js-qingdan-nav").attr("href","#qingdan/index/idx:1");
+			}else if(t.xinxistatusindex==1){
+				$("#js-qingdan-nav").attr("href","#qingdan/index/idx:3");
+			}else{
+				// 宝宝已出生
+				$("#js-qingdan-nav").attr("href","#qingdan/index/idx:5");
+			}
+			
 			t.goback();
 		},
 		goback: function() {

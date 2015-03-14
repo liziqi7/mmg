@@ -43,7 +43,7 @@
                 </a>
             </li>
             <li>
-                <a href="#qingdan/index/idx:1"><i class="nav-icon icon-qingdan"></i><span class="nav-txt">清单</span></a>
+                <a id="js-qingdan-nav" href="#qingdan/index/idx:1"><i class="nav-icon icon-qingdan"></i><span class="nav-txt">清单</span></a>
             </li>
             <li>
                 <a href="#go/index"><i class="nav-icon icon-go"></i><span class="nav-txt">go</span></a>

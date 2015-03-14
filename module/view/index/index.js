@@ -86,7 +86,7 @@ define('', '', function(require) {
 				};
 				var url = "favorite/favoriteAdd";
 				Jser.getJSON(ST.PATH.ACTION + url, _data, function(data) {
-					Jser.alert("收藏成功");
+					Jser.alert("已成功添加到我的关注");
 				}, function() {
 
 				}, "post");
