@@ -60,16 +60,7 @@ define('', '', function(require) {
 			Jser.setItem("xinxistatus", t.xinxistatusindex);
 			Jser.setItem("xinxigender", t.xinxigenderindex);
 			Jser.setItem("xinxidate", t.$el.find(".js-xinxi-date").val());
-			// 备孕
-			if(t.xinxistatusindex==0||t.xinxistatusindex==""){
-				$("#js-qingdan-nav").attr("href","#qingdan/index/idx:1");
-			}else if(t.xinxistatusindex==1){
-				$("#js-qingdan-nav").attr("href","#qingdan/index/idx:3");
-			}else{
-				// 宝宝已出生
-				$("#js-qingdan-nav").attr("href","#qingdan/index/idx:5");
-			}
-			
+			doQingDanNav();
 			t.goback();
 		},
 		goback: function() {

@@ -12,6 +12,7 @@ define(function(require, exports) {
         initialize: function() {
             var t = this;
             t.navs = this.$el.find("li");
+            doQingDanNav();
             this.bindEvent();
             return t;
         },

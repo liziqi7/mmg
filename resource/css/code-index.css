@@ -877,22 +877,31 @@ textarea{
 .slider-suggest2 .p2{   
    font-size: 0.875em;
 }
+.mark-box{
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  position: absolute;
+  right: 5px;
+  top: 7px;
+  z-index: 10;
+  padding: 20px;
+  display: block;
+  width: 17px;
+  height: 20px;
+
+}
 .mark-icon{
   width: 34px;
   height: 40px;
   background-position:0 -197px;
-   position: absolute;
-  right: 15px;
-  top: 17px;
   display: block;
 }
 .mark-icon-on{
   width: 34px;
   height: 40px;
   background-position:0 -237px;
-  position: absolute;
-  right: 15px;
-  top: 17px;
+  display: block;
 }
 .count-btn{
   min-width: 62px;

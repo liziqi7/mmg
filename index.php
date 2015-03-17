@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0,minimal-ui">
     <title>欢迎来到辣妈科技</title>
-    <link rel="stylesheet" href="resource/css/code-index.css"/>
+    <link rel="stylesheet" href="resource/css/code-index.css?123"/>
     <script type="text/javascript" src="module/lib/Jser.js"></script> 
     <script type="text/javascript" src="resource/js/jweixin-1.0.0.js"></script>
     <script type="text/javascript" src="resource/js/weixinshare.js"></script>
@@ -109,7 +109,18 @@
             // setwxconfig(data);
         }, "get", "json", true)
     }
-   
+    function doQingDanNav(){
+        var xinxistatusindex=Jser.getItem("xinxistatus");
+        // 备孕
+        if(xinxistatusindex==0||xinxistatusindex==""){
+            $("#js-qingdan-nav").attr("href","#qingdan/index/idx:1");
+        }else if(xinxistatusindex==1){
+            $("#js-qingdan-nav").attr("href","#qingdan/index/idx:3");
+        }else{
+            // 宝宝已出生
+            $("#js-qingdan-nav").attr("href","#qingdan/index/idx:5");
+        }
+    }
     // 获取微信基本信息
     function loadwxconfig() {
         //http://www.lamakeji.com/mamago/index.php/weixin/getAuth
