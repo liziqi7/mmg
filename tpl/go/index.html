@@ -6,7 +6,7 @@
 <ul class="go-list js-go-list">
 	<%_.each(data,function(item){%>
 	<%if(item.father_id=="0"){%>
-		<li>
+		<li data-is_recommend="<%=item.is_recommend%>">
 			<a href="#golist/index/fid:<%=item.fid%>">
 				<%=Jser.setItem("fid"+item.fid,item.fname)%>
 				<p class="p1"><%=item.fname%></p>

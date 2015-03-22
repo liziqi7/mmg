@@ -30,6 +30,10 @@ define('', '', function(require) {
 			t.$el.find(".js-list-area").append(_html);
 			Jser.loadimages(t.$el.find(".js-list-area"));
 			t.setShare();
+			$(window.parent.document).find("#js-iframe").load(function() {
+				var subWeb = document.frames ? document.frames["js-iframe"].document : this.contentDocument;
+				$(this).height(subWeb.body.scrollHeight);
+			});
 		},
 		goback: function() {
 			var t = this;

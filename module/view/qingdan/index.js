@@ -75,6 +75,11 @@ define('', '', function(require) {
 				var type = $(this).find("option:selected").attr("data-type");
 				t.doDropdown(type);
 			});
+
+			t.$el.find(".js-dropdown3").change(function() {
+				var type = $(this).find("option:selected").attr("data-type");
+				t.doDropdown3(type);
+			});
 		},
 		doLeft: function() {
 			var t = this;
@@ -122,26 +127,75 @@ define('', '', function(require) {
 		doCheckdQingdan: function(e) {
 			var $elm = $(e.currentTarget);
 			var ptid = $elm.attr("data-ptid");
-			$elm = $elm.parent();
-			var _data = {
-					"user_id": Jser.getItem('user_id'),
-					"ptid": ptid
-				},
-				url = "product/productTypeUserAdd";
-			if ($elm.hasClass("on")) {
-				url = "product/productTypeUserDelete";
-			}
-			$elm.toggleClass("on");
-			Jser.getJSON(ST.PATH.ACTION + url, _data, function(data) {
-				
-			}, function() {
+			var name = $elm.attr("data-name");
+			if (ptid) {
+				$elm = $elm.parent();
+				var _data = {
+						"user_id": Jser.getItem('user_id'),
+						"ptid": ptid
+					},
+					url = "product/productTypeUserAdd";
+				if ($elm.hasClass("on")) {
+					url = "product/productTypeUserDelete";
+				}
 				$elm.toggleClass("on");
-			}, "post")
+				Jser.getJSON(ST.PATH.ACTION + url, _data, function(data) {
+
+				}, function() {
+					$elm.toggleClass("on");
+				}, "post");
+			} else if (typeof name != "undefined" && $elm.parent().hasClass("on2")) {
+				Jser.confirm("确定要删除这件商品吗？", function() {
+					var _data = {
+							"user_id": Jser.getItem('user_id'),
+							"product_name": name
+						},
+						url = "product/deleteListProduct";
+					Jser.getJSON(ST.PATH.ACTION + url, _data, function(data) {
+						$elm.parent().remove();
+					}, function() {
+
+					}, "get");
+				});
+			}
 		},
 		doDropdown: function(type) {
 			var t = this;
 			global_qd_type = type;
 			t.model.fetchData();
+		},
+		doDropdown3: function(type) {
+			var t = this;
+
+			if (type == 1) {
+				Jser.confirm('<div class="qingdan-add"><input type="text" id="js-qingdan-add-name" placeholder="请输入需要添加的商品名称"/></div>', function() {
+					var name = $.trim($("#js-qingdan-add-name").val()),
+						_html;
+					if (name.length != 0) {
+						var _data = {
+								"user_id": Jser.getItem('user_id'),
+								"product_name": escape(name)
+							},
+							url = "product/addListProduct";
+						Jser.getJSON(ST.PATH.ACTION + url, _data, function(data) {
+							// $elm.parent().remove();
+
+							_html = '<li class="clean js-product">' + '<div class="qd-left">' + '<a href="javascript:;">' + '<table>' + '<tbody><tr>' + '<td>' + '</td>' + '<td>' + '<div class="qd-info">' + '<p class="qd-title">' + name + '</p>' + '</div>' + '</td>' + '</tr>' + '</tbody></table>' + '</a>' + '</div>' + '<div class="qd-right js-qd-checked" data-name="测试"><div class="qd-icon del"><i class="icon"></i><i class="del-icon"></i></div></div>' + '</li>'
+
+							t.$el.find(".js-qingdan-list").append(_html);
+						}, function() {
+
+						}, "get");
+					}
+				});
+				t.$el.find(".js-product").removeClass("on2");
+				//增加商品
+			} else if (type == 2) {
+				//删除商品
+				t.$el.find(".js-product").addClass("on2");
+			} else {
+				t.$el.find(".js-product").removeClass("on2");
+			}
 		},
 		bindEvent: function() {
 			var t = this;

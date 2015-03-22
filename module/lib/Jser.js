@@ -117,6 +117,9 @@ window.Jser = {
                     }
                     var s = Number(j.code),
                         flag = false;
+                    if (typeof j.retcode != "undefined") {
+                        s = 0;
+                    }
                     if (s == 0) {
                         flag = true;
                     } else {
@@ -207,9 +210,9 @@ window.Jser = {
         $(".js-wrapper").append($pop);
         $(".js-close").one('click', function() {
             var uid = $(this).data("uid");
-            $("#js-pop" + uid).remove();
             $(document).trigger("closepop" + uid);
             callback && callback();
+            $("#js-pop" + uid).remove();
         });
         return uid;
     },
@@ -219,19 +222,19 @@ window.Jser = {
         $pop.find(".js-pop-txt").html(txt);
         $pop.find(".js-close").attr("data-uid", uid).html("取消");
         var $clone = $pop.find(".js-close").clone();
-        $clone.addClass("js-ok").html("好");
+        $clone.addClass("js-ok").remove(".js-close").html("好");
         $pop.find(".js-close").parent().append($clone);
         $pop.attr("id", "js-pop" + uid);
         $(".js-wrapper").append($pop);
-        $pop.find(".js-close").one('click', function() {
-            var uid = $(this).data("uid");
-            $("#js-pop" + uid).remove();
-            $(document).trigger("closepop" + uid);
-            cancel && cancel();
-        });
         $pop.find(".js-ok").one('click', function() {
-            $(document).trigger("okpop" + uid);
             ok && ok();
+            $(document).trigger("okpop" + uid);
+            $("#js-pop" + uid).remove();
+        });
+        $pop.find(".js-close").one('click', function() {
+            cancel && cancel();
+            $(document).trigger("closepop" + uid);
+            $("#js-pop" + uid).remove();
         });
         callback && callback($pop);
         return uid;

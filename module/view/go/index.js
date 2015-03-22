@@ -4,9 +4,11 @@ define('', '', function(require) {
 	var H = require('text!../../../tpl/go/index.html');
 	var model = new M({
 		pars: {
-			"user_id": Jser.getItem("user_id")
+			"user_id": Jser.getItem("user_id"),
+			"fromflag": "myselfandshare"
 		}
 	});
+	var _x = "";
 	var V = B.View.extend({
 		model: model,
 		template: H,
@@ -101,26 +103,28 @@ define('', '', function(require) {
 					}
 
 					// determine if scrolling test has run - one time test
-					if (typeof isScrolling == 'undefined') {
-						isScrolling = !!(isScrolling || Math.abs(delta.x) < Math.abs(delta.y));
-					}
-					// if user is not trying to scroll vertically
 					if (!isScrolling) {
-
-						// prevent native scrolling
+						_x = Math.abs(delta.x);
+						console.log(_x)
+						isScrolling = _x > 30 && _x > Math.abs(delta.y);
+					} else {
 						event.preventDefault();
 
 						t.translate(event.currentTarget, delta.x + event.currentTarget.slidePos, 0);
-
 					}
+					// console.log(isScrolling);
+					// if user is not trying to scroll vertically
+
 
 				},
 				end: function(event) {
-
-					if (delta.x < 0) {
-						t.move(event.currentTarget, -100, 400);
-					} else {
-						t.move(event.currentTarget, 0, 400);
+					_x = delta.x;
+					if (Math.abs(_x) > 30) {
+						if (_x < 0) {
+							t.move(event.currentTarget, -100, 400);
+						} else {
+							t.move(event.currentTarget, 0, 400);
+						}
 					}
 					event.currentTarget.removeEventListener('touchmove', events, false)
 					event.currentTarget.removeEventListener('touchend', events, false)
@@ -128,8 +132,10 @@ define('', '', function(require) {
 				}
 			}
 			aLi.each(function() {
-				this.addEventListener('touchstart', events, false);
-				this.slidePos = 0;
+				if (!$(this).data("is_recommend")) {
+					this.addEventListener('touchstart', events, false);
+					this.slidePos = 0;
+				}
 			});
 
 			$(".js-golist-remove").on("touchstart", function(event) {
@@ -151,7 +157,7 @@ define('', '', function(require) {
 			} else if (dist > 0) {
 				dist = 0;
 			}
-			console.log(dist);
+
 			var style = elem && elem.style;
 			if (!style) return;
 
