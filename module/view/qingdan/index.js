@@ -77,8 +77,11 @@ define('', '', function(require) {
 			});
 
 			t.$el.find(".js-dropdown3").change(function() {
-				var type = $(this).find("option:selected").attr("data-type");
+				var $elem = $(this).find("option:selected");
+				var type = $elem.attr("data-type");
+				// console.log(type);
 				t.doDropdown3(type);
+				t.$el.find(".js-dropdown3 option").eq(-1).attr("selected", true);
 			});
 		},
 		doLeft: function() {
@@ -189,6 +192,7 @@ define('', '', function(require) {
 					}
 				});
 				t.$el.find(".js-product").removeClass("on2");
+
 				//增加商品
 			} else if (type == 2) {
 				//删除商品

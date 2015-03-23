@@ -963,10 +963,10 @@ textarea{
 }
 .hd-dropdown3{
   position: absolute;
-  width: 45px;
-  height: 44px;
+  width: 30px;
+  height: 30px;
   right: 50px;
-  top: 0px;
+  top: 10px;
   opacity: 0;
   z-index: 2;
 }
