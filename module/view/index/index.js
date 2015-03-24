@@ -8,7 +8,7 @@ define('', '', function(require) {
 
 	var model = new M({
 		pars: {
-			"page": "1"
+			"pageNo": "1"
 		}
 	});
 	var indexSelf;
@@ -114,7 +114,7 @@ define('', '', function(require) {
 			t.page++;
 			if (t.page <= t.totalPage) {
 				var pars = {
-					"page": t.page
+					"pageNo": t.page
 				}
 				t.isLoad = true;
 				t.$el.find(".js-list-loading").show();
