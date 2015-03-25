@@ -72,16 +72,19 @@ define('', '', function(require) {
 			Jser.loadimages(t.$el);
 			// t.bindEvent();
 			t.$el.find(".js-dropdown").change(function() {
-				var type = $(this).find("option:selected").attr("data-type");
-				t.doDropdown(type);
+				var $elem = $(this).find("option:selected");
+				t.doDropdown($elem.attr("data-type"));
+				$elem.parent().html($elem.parent().html());
+				return false;
 			});
 
 			t.$el.find(".js-dropdown3").change(function() {
 				var $elem = $(this).find("option:selected");
 				var type = $elem.attr("data-type");
-				// console.log(type);
 				t.doDropdown3(type);
-				t.$el.find(".js-dropdown3 option").eq(-1).attr("selected", true);
+				$elem.parent().html($elem.parent().html());
+				// t.$el.find(".js-dropdown3 option").eq(-1).attr("selected", true);
+				return false;
 			});
 		},
 		doLeft: function() {
@@ -147,19 +150,23 @@ define('', '', function(require) {
 				}, function() {
 					$elm.toggleClass("on");
 				}, "post");
-			} else if (typeof name != "undefined" && $elm.parent().hasClass("on2")) {
-				Jser.confirm("确定要删除这件商品吗？", function() {
-					var _data = {
-							"user_id": Jser.getItem('user_id'),
-							"product_name": name
-						},
-						url = "product/deleteListProduct";
-					Jser.getJSON(ST.PATH.ACTION + url, _data, function(data) {
-						$elm.parent().remove();
-					}, function() {
+			} else if (typeof name != "undefined") {
+				if ($elm.parent().hasClass("on2")) {
+					Jser.confirm("确定要删除这件商品吗？", function() {
+						var _data = {
+								"user_id": Jser.getItem('user_id'),
+								"product_name": name
+							},
+							url = "product/deleteListProduct";
+						Jser.getJSON(ST.PATH.ACTION + url, _data, function(data) {
+							$elm.parent().remove();
+						}, function() {
 
-					}, "get");
-				});
+						}, "get");
+					});
+				} else {
+					$elm.parent().toggleClass("on");
+				}
 			}
 		},
 		doDropdown: function(type) {
@@ -183,7 +190,7 @@ define('', '', function(require) {
 						Jser.getJSON(ST.PATH.ACTION + url, _data, function(data) {
 							// $elm.parent().remove();
 
-							_html = '<li class="clean js-product">' + '<div class="qd-left">' + '<a href="javascript:;">' + '<table>' + '<tbody><tr>' + '<td>' + '</td>' + '<td>' + '<div class="qd-info">' + '<p class="qd-title">' + name + '</p>' + '</div>' + '</td>' + '</tr>' + '</tbody></table>' + '</a>' + '</div>' + '<div class="qd-right js-qd-checked" data-name="测试"><div class="qd-icon del"><i class="icon"></i><i class="del-icon"></i></div></div>' + '</li>'
+							_html = '<li class="clean product js-product">' + '<div class="qd-left">' + '<p class="qd-title">' + name + '</p>' + '</div>' + '<div class="qd-right js-qd-checked" data-name="' + name + '"><div class="qd-icon del"><i class="icon"></i><i class="del-icon"></i></div></div>' + '</li>'
 
 							t.$el.find(".js-qingdan-list").append(_html);
 						}, function() {

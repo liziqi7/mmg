@@ -2,9 +2,12 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0,minimal-ui">
     <title>欢迎来到辣妈科技</title>
-    <link rel="stylesheet" href="resource/css/code-index.css?123"/>
+    <link rel="stylesheet" href="resource/css/code-index.css"/>
     <script type="text/javascript" src="module/lib/Jser.js"></script> 
     <script type="text/javascript" src="resource/js/jweixin-1.0.0.js"></script>
     <script type="text/javascript" src="resource/js/weixinshare.js"></script>

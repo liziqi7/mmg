@@ -1212,12 +1212,12 @@ textarea{
 .qd-right{
   width: 49px;
   border-left:1px solid #EBEBEB;
-  height: 93px;
+  height: 94px;
   float: right;
   background-color:#fafafa; 
 }
 .product .qd-right{
- height: 50px;
+ height: 54px;
 }
 .qd-icon{
   margin:36px auto 0;  

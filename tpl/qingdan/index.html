@@ -6,14 +6,16 @@
 	<a href="#search/index" class="hd-btn"><i class="search-icon icon"></i>
 	</a>
 	<select class="hd-dropdown js-dropdown">
+		<option selected style="display:none"></option>
 		<option data-type="0">全部商品</option>
 		<option data-type="1">已完成</option>
 		<option data-type="2">未完成</option>
 	</select>	
 	<select class="hd-dropdown3 js-dropdown3">
+		<option selected style="display:none"></option>
 		<option data-type="1">增加商品</option>
 		<option data-type="2">删除商品</option>
-		<option data-type="0" selected>取消</option>
+		<option data-type="0">取消</option>
 	</select>
 </div>
 <div class="first-wrapper qingdan-index">
@@ -35,6 +37,7 @@
 			<div class="qs-explain">	
 				<div class="qs-btn btn">全部<%=page.totalSize%>件商品</div>
 				<select class="qs-btn-select js-dropdown">
+					<option selected style="display:none"></option>
 					<option data-type="0">全部</option>
 					<option data-type="1">已完成</option>
 					<option data-type="2">未完成</option>
