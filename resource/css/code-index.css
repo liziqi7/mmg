@@ -1193,7 +1193,9 @@ textarea{
   height: 95px;
   width: 100%;
   position: relative;
-
+}
+.qingdan-list li.product{
+  height: 55px; 
 }
 .qd-left{
   position: absolute;
@@ -1203,6 +1205,10 @@ textarea{
   bottom: 0;
   padding:12px 14px 0 0; 
 }
+.product .qd-left{
+  padding:0 0 0 65px;
+  line-height: 54px;
+}
 .qd-right{
   width: 49px;
   border-left:1px solid #EBEBEB;
@@ -1210,10 +1216,16 @@ textarea{
   float: right;
   background-color:#fafafa; 
 }
+.product .qd-right{
+ height: 50px;
+}
 .qd-icon{
   margin:36px auto 0;  
   width: 19px;
   position: relative;;
+}
+.product .qd-icon{
+  margin:18px auto 0; 
 }
 .qd-icon .icon{
   background-position:0 -611px;
