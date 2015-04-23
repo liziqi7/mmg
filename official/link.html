@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>妈咪口袋</title>
+    <script type="text/javascript">
+    var Jser = {};
+    Jser.ua = navigator.userAgent;
+    // 浏览器检测
+    (function(a) {
+        function b(a) {
+            var os = this.os = {},
+                browser = this.browser = {},
+                WebKit = a.match(/WebKit\/([\d.]+)/),
+                android = a.match(/(Android)[\s+|\/]([\d.]+)/),
+                windowPhone = a.match(/Windows\s+Phone/),
+                ipad = a.match(/(iPad).*OS\s([\d_]+)/),
+                iphone = !ipad && a.match(/(iPhone\sOS)\s([\d_]+)/),
+                webOS = a.match(/(webOS|hpwOS)[\s\/]([\d.]+)/),
+                touchPad = webOS && a.match(/TouchPad/),
+                Kindle = a.match(/Kindle\/([\d.]+)/),
+                Silk = a.match(/Silk\/([\d._]+)/),
+                BlackBerry = a.match(/(BlackBerry).*Version\/([\d.]+)/),
+                BB10 = a.match(/(BB10).*Version\/([\d.]+)/),
+                RIM = a.match(/(RIM\sTablet\sOS)\s([\d.]+)/),
+                PlayBook = a.match(/PlayBook/),
+                Chrome = a.match(/Chrome\/([\d.]+)/) || a.match(/CriOS\/([\d.]+)/),
+                Firefox = a.match(/Firefox\/([\d.]+)/),
+                PC = a.match(/Windows|Linux|Macintosh/);
+            if (browser.webkit = !!WebKit) browser.version = WebKit[1];
+            android && (os.android = !0, os.version = android[2]),
+                iphone && (os.ios = os.iphone = !0, os.version = iphone[2].replace(/_/g, ".")),
+                ipad && (os.ios = os.ipad = !0, os.version = ipad[2].replace(/_/g, ".")),
+                webOS && (os.webos = !0, os.version = webOS[2]),
+                touchPad && (os.touchpad = !0),
+                BlackBerry && (os.blackberry = !0, os.version = BlackBerry[2]),
+                BB10 && (os.bb10 = !0, os.version = BB10[2]),
+                RIM && (os.rimtabletos = !0, os.version = RIM[2]),
+                PlayBook && (browser.playbook = !0),
+                Kindle && (os.kindle = !0, os.version = Kindle[1]),
+                Silk && (browser.silk = !0, browser.version = Silk[1]), !Silk && os.android && a.match(/Kindle Fire/) && (browser.silk = !0),
+                Chrome && (browser.chrome = !0, browser.version = Chrome[1]),
+                Firefox && (browser.firefox = !0, browser.version = Firefox[1]),
+                os.tablet = !!(ipad || PlayBook || android && !a.match(/Mobile/) || Firefox && a.match(/Tablet/)),
+                os.phone = !os.tablet && !!(android || iphone || windowPhone || webOS || BlackBerry || BB10 || Chrome && a.match(/Android/) || Chrome && a.match(/CriOS\/([\d.]+)/) || Firefox && a.match(/Mobile/)),
+                os.pc = !os.tablet && !os.phone && !!PC;
+        }
+        var u = Jser.ua;
+        b.call(a, u), a.__detect = b;
+    })(Jser);
+
+    if(Jser.os.ios){
+        location.href="https://appsto.re/cn/g70J5.i";
+    }else if(Jser.os.android){
+        location.href="http://m.apk.hiapk.com/appinfo/com.lamakeji.mummypackage/1/4"
+    }
+</script>
+<style type="text/css">
+a {
+  text-decoration:none;
+  -webkit-user-select: none;
+  user-select: none;
+  border:none;
+  outline:0 none;
+  outline-style:none;
+}
+a:active,a:hover {
+  outline: 0;
+}
+</style>
+</head>
+<h2>妈咪口袋</h2>
+<a href="https://appsto.re/cn/g70J5.i">ios下载</a>
+<a href="http://m.apk.hiapk.com/appinfo/com.lamakeji.mummypackage/1/4">android下载</a>
+</html>
