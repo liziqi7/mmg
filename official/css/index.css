@@ -1,0 +1,111 @@
+* {
+  margin:0;
+  padding: 0;
+}
+html{
+  height:100%;
+  /*禁止当手机由竖屏转向横屏的时内容中的文字自动调整大小*/
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -o-text-size-adjust: 100%;
+  text-size-adjust:100%;
+  /*Mobile上点击链接高亮的时候设置颜色为透明*/
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  /*在IE10之上版本，不允许默认的touch行为*/
+  -ms-touch-action: none;
+}
+body{
+  height:100%;
+  /*手机字体*/
+  font-family:DroidSansFallback,"Helvetica Neue",Helvetica,STHeiTi,sans-serif;
+}
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary {
+  display: block;
+}
+audio,canvas,progress,video {
+  display: inline-block;
+  vertical-align: baseline;
+}
+a {
+  text-decoration:none;
+  -webkit-user-select: none;
+  user-select: none;
+  border:none;
+  outline:0 none;
+  outline-style:none;
+}
+a:active,a:hover {
+  outline: 0;
+}
+em,i{font-style: normal;}
+img{
+  border:none;
+}
+ul,ol{
+  list-style-type:none;
+}
+.clearfix {
+  *zoom: 1;
+}
+
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+
+.clearfix:after {
+  clear: both;
+}
+/*常用属性*/
+.show{
+  display: block;
+}
+.showInlineBlock{
+  display: inline-block;
+}
+.hide{
+  display: none;
+}
+.clear {clear:both;overflow:hidden;height:0;}
+
+.header{
+  height: 100px;
+  width: 100%;
+  background: #fff;
+}
+.hd{
+  height: 100px;
+  width: 1195px;
+  margin: 0 auto;
+}
+.hd h2{
+  float: left;
+}
+.more{
+  color: #666666;
+  font-size: 18px;
+  height: 50px;
+  width: 130px; 
+  display: block;
+  float: right;
+  border-radius: 3px;
+}
+.more:hover{
+  background-color: #ffcccc;
+}
+.main{
+  width: 100%;
+  height: 700px;
+  background: url(../images/bg.jpg) 0 0 no-repeat;
+}
+.footer{
+  height: 50px;
+  line-height: 50px;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  color: #999;
+}
