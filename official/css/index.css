@@ -138,11 +138,13 @@ ul,ol{
   position: absolute;
   background:#000;
   opacity: 0.5;
+  filter:alpha(opacity=50); 
   width: 100%;
   height: 100%;
 }
 .dialog-content{
   opacity: 0.9;
+  filter:alpha(opacity=90); 
   position: absolute;
   left: 50%;
   top:140px;
