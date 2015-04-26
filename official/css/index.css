@@ -78,11 +78,12 @@ ul,ol{
 }
 .hd{
   height: 100px;
-  width: 1195px;
+  width: 1300px;
   margin: 0 auto;
 }
 .hd h2{
   float: left;
+  margin-left: 50px;
 }
 .more{
   color: #666666;
@@ -94,7 +95,7 @@ ul,ol{
   border-radius: 3px;
   text-align: center;
   line-height: 50px;
-  margin-top: 25px;
+  margin: 25px 55px 0 0;
   cursor: pointer;
 }
 .more:hover{
