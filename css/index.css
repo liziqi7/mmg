@@ -18,7 +18,8 @@ html{
 body{
   height:100%;
   /*手机字体*/
-  font-family:DroidSansFallback,"Helvetica Neue",Helvetica,STHeiTi,sans-serif;
+  font-family: 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', '宋体', \5b8b\4f53, Tahoma, Arial, Helvetica, STHeiti,arial;
+
 }
 article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary {
   display: block;
@@ -72,40 +73,42 @@ ul,ol{
 .clear {clear:both;overflow:hidden;height:0;}
 
 .header{
-  height: 100px;
+  height: 75px;
   width: 100%;
   background: #fff;
+  border-bottom:3px solid #eeece4;
 }
 .hd{
-  height: 100px;
+  height: 75px;
   width: 1300px;
   margin: 0 auto;
 }
 .hd h2{
   float: left;
+  display: block;;
   margin-left: 50px;
+  height: 100%;
+}
+/*.hd h2*/
+.hd h2 img{
+  height: 100%;
 }
 .more{
-  color: #666666;
-  font-size: 18px;
-  height: 50px;
-  width: 130px; 
+  height: 39px;
+  width: 100px; 
   display: block;
   float: right;
-  border-radius: 3px;
-  text-align: center;
-  line-height: 50px;
-  margin: 25px 55px 0 0;
+  margin: 18px 55px 0 0;
   cursor: pointer;
+  background: url(../images/more.jpg) 0 0 no-repeat;
 }
 .more:hover{
-  background-color: #ffcccc;
+  background-position: 0 -39px;
 }
 .main{
   width: 100%;
-  height: 700px;
-
-  background: url(../images/bg.jpg) 0 0 no-repeat;
+  background: url(../images/bg2.jpg) center center no-repeat;
+  background: auto 100%;
 }
 .mn{
     height: 100px;
@@ -119,8 +122,8 @@ ul,ol{
   right:70px;
 }
 .footer{
-  height: 50px;
-  line-height: 50px;
+  height: 40px;
+  line-height: 40px;
   width: 100%;
   text-align: center;
   font-size: 14px;
@@ -130,7 +133,7 @@ ul,ol{
 .dialog{
   display: none;
   position: fixed;
-  height: 800px;
+  height: 100%;
   width: 100%;
   left: 0;
   top: 0;
@@ -148,8 +151,8 @@ ul,ol{
   filter:alpha(opacity=90); 
   position: absolute;
   left: 50%;
-  top:140px;
-  margin-left: -450px;
+  top:50%;
+  margin: -300px 0 0 -450px;
   width: 900px;
   height: 600px;
   background: #fff;

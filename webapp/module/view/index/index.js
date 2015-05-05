@@ -64,8 +64,12 @@ define('', '', function(require) {
 			$(window).on("scroll.index", t.doScroll);
 		},
 		doMark: function(e) {
+			if (!App.isLogin()) {
+				return false;
+			}
 			var $elem = $(e.currentTarget);
 			var on = Number($elem.attr("data-on"));
+
 			if (on) {
 				Jser.alert("已收藏过");
 			} else {
@@ -79,9 +83,9 @@ define('', '', function(require) {
 				var _data = {
 					"fname": $elem.attr("data-fname"),
 					"user_id": Jser.getItem("user_id"),
-					"fdescribe":$elem.attr("data-fdescribe"),
+					"fdescribe": $elem.attr("data-fdescribe"),
 					"owner": 1,
-					"father_id":$elem.attr("data-fid"),
+					"father_id": $elem.attr("data-fid"),
 					"fromflag": "share"
 				};
 				var url = "favorite/favoriteAdd";

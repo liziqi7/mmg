@@ -127,6 +127,9 @@ define('', '', function(require) {
 			Jser.share();
 		},
 		doPraise: function(e) {
+			if (!App.isLogin()) {
+				return false;
+			}
 			var $elem = $(e.currentTarget);
 			var isGood = $elem.attr("data-isgood");
 			var t = this;

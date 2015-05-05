@@ -68,11 +68,11 @@ define(function(require, exports) {
             this.nav = new navView();
         },
         index: function() {
-            if (Jser.getItem("user_id")) {
-                this.loadmodel('index', 'index');
-            } else {
-                this.loadmodel('login', 'index');
-            }
+            // if (Jser.getItem("user_id")) {
+            this.loadmodel('index', 'index');
+            // } else {
+            //     this.loadmodel('login', 'index');
+            // }
         },
         //按照module/action(/conditions) 格式
         loadmodel: function(md, ac, con) {
@@ -140,6 +140,20 @@ define(function(require, exports) {
         initialize: function() {
             new motelRouter();
             B.history.start();
+        },
+        isLogin: function(isBool) {
+            var result = Jser.getItem("user_id") ? true : false;
+            if (!result) {
+                Jser.confirm("请先登录", function() {
+                    window.location.hash = "#login/index";
+                }, function() {
+                    if (isBool) {
+                        window.location.hash = "#login/index";
+                    }
+                    // callback && callback();
+                })
+            }
+            return result;
         }
     };
 

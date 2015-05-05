@@ -20,8 +20,14 @@ define('', '', function(require) {
 		render: function() {
 			var t = this;
 			t.$el.show().html(t.template);
+			if (!App.isLogin()) {
+				return false;
+			}
 		},
 		doAddSure: function() {
+			if (!App.isLogin()) {
+				return false;
+			}
 			var t = this;
 			var val = $.trim(t.$el.find(".js-add-val").val());
 			if (val.length != 0) {
@@ -33,15 +39,15 @@ define('', '', function(require) {
 				owner:0：未公开    1：公开
 				father_id:
 				 */
-				var _data={
-					"fname":val,
-					"user_id":Jser.getItem("user_id"),
-					"owner":0,
-					"fdescribe":0,
-					"fromflag":"myself"
+				var _data = {
+					"fname": val,
+					"user_id": Jser.getItem("user_id"),
+					"owner": 0,
+					"fdescribe": 0,
+					"fromflag": "myself"
 				};
 				Jser.getJSON(ST.PATH.ACTION + "favorite/favoriteAdd", _data, function(data) {
-					Jser.alert("新建go单成功",function(){
+					Jser.alert("新建go单成功", function() {
 						window.location.hash = "#go/index";
 					});
 				}, function() {

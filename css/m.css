@@ -74,18 +74,30 @@ body{
   -webkit-overflow-scrolling: touch;
 }
 .wrap{
-  max-width: 400px;
+  max-width: 414px;
   width: 100%;
-  min-height: 759px;
   margin: 0 auto;
-  background: url(../images/mbg.jpg) 0 0 no-repeat;
-  background-size: 100%;
+  /*background: url(../images/mbg.jpg) 0 0 no-repeat;*/
+  /*background-size: 100% auto;*/
   position: relative;
+}
+#js-bg1{
+  position: relative;
+}
+#js-bg2{
+  position: relative;
+  height: 230px;
+  background: url(../images/mbg2.jpg) 0 0 no-repeat;
+  background-size:100% auto;
+}
+.wrap img.bg{
+  height: 100%;
+  width: 100%;
 }
 .down{
   position: absolute;
-  top: 482px;
   left: 50%;
+  bottom:10px;
   display: block;
   margin-left: -126px;
   width: 252px;
@@ -96,7 +108,7 @@ body{
 .qrcode{
   width: 100%;
   position: absolute;
-  bottom: 10px;
+  top:53.5px;
   left: 0;
 }
 .qrcode img{
@@ -110,4 +122,20 @@ body{
     line-height: 30px;
     color: #333;
     font-size: 0.875em;
+}
+.mark{
+  display: none;
+  position: fixed;
+  top: 0;
+  left:0;
+  right: 0;
+  bottom: 0;
+  background:#000;
+  opacity: 0.7; 
+}
+.mark img{
+  width: 200px;
+  display: block;
+  margin: 22.6% auto;
+
 }

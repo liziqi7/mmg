@@ -27,6 +27,9 @@ define('', '', function(require) {
 			var html = _.template(t.template, data);
 			t.$el.show().html(html);
 			t.bindEvent();
+			if (!App.isLogin()) {
+				return false;
+			}
 		},
 		changePars: function() {
 			var t = this;
@@ -41,6 +44,9 @@ define('', '', function(require) {
 			});
 		},
 		doSure: function(e) {
+			if (!App.isLogin()) {
+				return false;
+			}
 			var t = this;
 			var $elem = $(e.currentTarget);
 			if ($elem.hasClass("modified")) {

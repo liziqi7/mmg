@@ -79,6 +79,9 @@ define('', '', function(require) {
 			});
 
 			t.$el.find(".js-dropdown3").change(function() {
+				if (!App.isLogin()) {
+					return false;
+				}
 				var $elem = $(this).find("option:selected");
 				var type = $elem.attr("data-type");
 				t.doDropdown3(type);
